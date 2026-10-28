@@ -48,7 +48,9 @@ masing-masing komponen.
 
 ## 3. Prasyarat
 
-- **Node.js 22 LTS** (diuji dengan `v22.22.1`). Minimal Node 20.19+.
+- **Node.js 22.22.3+** (syarat engine Nuxt 4.6.2). Build masih berjalan di
+  `v22.22.1`, tetapi npm menampilkan peringatan `EBADENGINE`; upgrade Node
+  disarankan.
 - **npm** (diuji dengan `11.21.1`).
 - Browser Chromium untuk verifikasi screenshot.
 - Tidak wajib mengisi `.env.local`. File itu hanya berisi token Vercel dan
@@ -58,10 +60,10 @@ masing-masing komponen.
 
 ## 4. Setup
 
-Repositori berada di folder induk, aplikasi Nuxt berada di subfolder `webfinal`.
+Seluruh aplikasi Nuxt berada langsung di root repositori. Jalankan perintah
+dari root repo.
 
 ```bash
-cd webfinal
 npm install
 npm run dev
 ```
@@ -97,12 +99,25 @@ Contoh perintah non-interaktif yang dipakai di sesi sebelumnya:
 CI=1 NUXT_TELEMETRY_DISABLED=1 npm run build
 ```
 
+### Deployment Vercel
+
+Karena aplikasi berada di root repo, setting project Vercel harus:
+
+| Setting | Nilai |
+| --- | --- |
+| Root Directory | `.` (root repo) |
+| Production Branch | `main` |
+| Framework Preset | Nuxt |
+| Build Command | `npm run build` |
+
+Jangan mengarahkan Root Directory ke `webfinal`; folder itu sudah tidak ada.
+
 ---
 
 ## 5. Struktur proyek
 
 ```text
-webfinal/
+.
 ├─ app/
 │  ├─ app.vue
 │  ├─ assets/css/main.css          # import Nunito + base style
