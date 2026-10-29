@@ -21,8 +21,9 @@ Posisi, proporsi, warna, dan tipografi dibuat mendekati screenshot referensi.
 | 5. Testimoni | `#testimonial` | `app/components/TestimonialSection.vue` | Selesai |
 | 6. Mitra: Batik Shaho | `/mitra/batik-shaho` | `app/pages/mitra/batik-shaho/index.vue` | Selesai |
 | 7. Jenis Motif Batik | `/mitra/batik-shaho/motif` | `app/pages/mitra/batik-shaho/motif.vue` | Selesai |
-| 8. Maps Batik Shaho | `/mitra/batik-shaho/maps` | `app/pages/mitra/batik-shaho/maps.vue` | Selesai |
-| 9. Reservasi Batik Shaho | `/mitra/batik-shaho/date` | `app/pages/mitra/batik-shaho/date.vue` | Selesai |
+| 8. Detail Motif Batik | `/mitra/batik-shaho/motif-detail/[jenis]` | `app/pages/mitra/batik-shaho/motif-detail/[jenis].vue` | Selesai |
+| 9. Maps Batik Shaho | `/mitra/batik-shaho/maps` | `app/pages/mitra/batik-shaho/maps.vue` | Selesai |
+| 10. Reservasi Batik Shaho | `/mitra/batik-shaho/date` | `app/pages/mitra/batik-shaho/date.vue` | Selesai |
 
 Catatan:
 
@@ -33,17 +34,13 @@ Catatan:
 - `TestimonialSection.vue` sudah dipasang setelah `ProgramSection`.
 - Referensi komposit halaman kelima ada di `public/design/5.png`.
 - Asset individual halaman kelima berada di `public/halaman kelima/`.
-- Halaman mitra Batik Shaho (`/mitra/batik-shaho`) dibuat dari `Frame 22.png` di
-  `public/design/halaman_mitra_batik_shaho/1/`. Kartu logo S (Batik Shaho) pada
-  halaman 3 (`AboutUsDetailSection.vue`) menjadi tautan ke halaman ini.
-- Halaman Jenis Motif Batik (`/mitra/batik-shaho/motif`) dibuat dari
-  `public/design/jenis_motif_batik/2/Frame 23 (1).png`; tombol Motif pada
-  halaman mitra menjadi tautan ke sini.
+- Halaman mitra Batik Shaho (`/mitra/batik-shaho`) dibangun **murni dengan kode HTML/Tailwind dan aset individual** (`Mask group.png`, `Ellipse 41.png`, `Vector(1).png`, `1 (1) 1.png`), tanpa memakai gambar komposit `Frame 22.png`. Terdapat tombol navigasi native (Maps, Contact WhatsApp, Motif, Date) dan tombol `← Kembali ke Home`.
+- Halaman Jenis Motif Batik (`/mitra/batik-shaho/motif`) dan Detail Motif (`/mitra/batik-shaho/motif-detail/[jenis].vue`) terhubung timbal-balik dengan tombol kembali konsisten.
+- Seluruh tombol kembali pada halaman mitra memakai palet tombol "More Info" Home (`bg-forest text-white shadow-lg hover:scale-[1.02] focus-visible:outline-forest`).
 - Halaman Maps (`/mitra/batik-shaho/maps`) dan halaman reservasi Batik Shaho
   (`/mitra/batik-shaho/date`) memakai aset individual dari `public/design/maps/4/`
   dan `public/design/date/5/`. Halaman reservasi menumpuk tiga artboard dari
-  atas ke bawah: ketentuan, pricelist, lalu reservasi; satu tombol kembali ke
-  halaman Batik Shaho tersedia di artboard terakhir.
+  atas ke bawah: ketentuan, pricelist, lalu reservasi.
 
 ---
 
@@ -137,13 +134,22 @@ Jangan mengarahkan Root Directory ke `webfinal`; folder itu sudah tidak ada.
 .
 ├─ app/
 │  ├─ app.vue
-│  ├─ assets/css/main.css          # import Nunito + base style
+│  ├─ assets/css/main.css          # import Nunito + base style (overflow-x: clip)
 │  ├─ layouts/default.vue
-│  ├─ pages/index.vue              # urutan semua section
+│  ├─ pages/
+│  │  ├─ index.vue                 # urutan landing page 5 section
+│  │  └─ mitra/
+│  │     └─ batik-shaho/
+│  │        ├─ index.vue           # profil utama mitra Batik Shaho
+│  │        ├─ motif.vue           # katalog jenis motif
+│  │        ├─ maps.vue            # peta lokasi
+│  │        ├─ date.vue            # ketentuan & reservasi
+│  │        └─ motif-detail/
+│  │           └─ [jenis].vue      # detail motif batik
 │  └─ components/
 │     ├─ AppNavbar.vue             # navbar hero
 │     ├─ AboutDropdown.vue         # halaman 2
-│     ├─ AboutUsDetailSection.vue  # halaman 3
+│     ├─ AboutUsDetailSection.vue  # halaman 3 (card desain referensi)
 │     ├─ ProgramSection.vue        # halaman 4
 │     ├─ DecorativeFlower.vue      # bunga SVG/CSS (draft halaman 5)
 │     ├─ AboutSection.vue          # draft, belum dipakai
@@ -155,7 +161,7 @@ Jangan mengarahkan Root Directory ke `webfinal`; folder itu sudah tidak ada.
 │  ├─ halaman ketiga/              # asset halaman 3
 │  ├─ halaman keempat/             # asset halaman 4
 │  ├─ halaman kelima/              # asset individual halaman 5
-│  └─ design/                      # referensi + asset ikon search
+│  └─ design/                      # asset mitra, motif, maps, date
 ├─ tailwind.config.ts              # token warna & font
 ├─ nuxt.config.ts
 └─ package.json
@@ -475,6 +481,23 @@ Offset bisa berubah jika ada section baru, margin, atau tinggi non-artboard.
 7. **Mask supergrafis**
    Fade bawah membuat ornamen menghilang sebelum section berakhir. Ini
    disengaja. Jika fade dihapus, seam akan terlihat terpotong lagi.
+
+8. **Horizontal scroll karena ornamen keluar artboard**
+   Elemen dekoratif seperti bunga transisi `-right-[9.4%]` di `AboutDropdown` dapat
+   memicu horizontal scrollbar jika parent tidak memotong overflow horizontal.
+   Solusi: terapkan `overflow-x: clip` pada `html`, `body` (`main.css`) dan
+   `<main id="home">` (`index.vue`).
+
+9. **Ketergantungan file komposit pada Halaman Mitra**
+   Menggunakan screenshot `Frame 22.png` bersama overlay tag `<section>` memicu
+   kartu ganda (satu tertanam di gambar, satu dari HTML). Halaman mitra Batik Shaho
+   kini murni disusun dari aset individual (`Mask group.png`, `Union.png`, dsb.)
+   dan native HTML/Tailwind.
+
+10. **Konsistensi tombol kembali**
+    Seluruh tombol kembali pada halaman mitra (`motif`, `maps`, `date`,
+    `motif-detail/[jenis]`, dan `index.vue`) diseragamkan memakai `NuxtLink`
+    dan palet tombol "More Info" Home (`bg-forest text-white shadow-lg hover:scale-[1.02]`).
 
 ---
 
