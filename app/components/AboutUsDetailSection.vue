@@ -16,6 +16,7 @@ const learningCards = [
     text: 'Peserta dapat belajar membuat motif batik menggunakan teknik cap dengan mudah dan menyenangkan.',
     className: 'community-card--second',
     logoClass: 'community-card-logo--bs',
+    to: '/mitra/bulau-sayang',
   },
 ]
 </script>
