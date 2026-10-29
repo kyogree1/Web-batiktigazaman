@@ -1,7 +1,7 @@
 <template>
   <main id="home" class="bg-forest">
-    <section class="relative aspect-[1440/1024] w-full overflow-hidden" aria-label="Halaman utama">
-      <div class="absolute inset-x-0 top-0 z-40 h-[11.2%] bg-forest">
+    <section class="home-hero relative aspect-[1440/1024] w-full overflow-hidden" aria-label="Halaman utama">
+      <div class="absolute inset-x-0 top-0 z-40 h-[11.2%] bg-forest home-hero-nav">
         <AppNavbar />
       </div>
 
@@ -46,5 +46,78 @@
     <AboutDropdown />
     <AboutUsDetailSection />
     <ProgramSection />
+    <TestimonialSection />
   </main>
 </template>
+
+<style scoped>
+@media (max-width: 700px) {
+  .home-hero {
+    aspect-ratio: auto;
+    min-height: 36rem;
+    padding-top: 3.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .home-hero-nav {
+    position: absolute;
+    height: 3.5rem;
+  }
+
+  .home-hero :deep(nav) {
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding-inline: 1rem;
+    white-space: nowrap;
+  }
+
+  .home-hero :deep(nav > div) {
+    gap: 0.9rem;
+  }
+
+  .home-hero :deep(nav > button) {
+    flex: none;
+  }
+
+  .home-hero > img:first-of-type {
+    position: absolute;
+    inset: 3.5rem 0 0;
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .home-hero > div:nth-of-type(2) {
+    position: absolute;
+    inset: 3.5rem 0 0;
+    height: auto;
+  }
+
+  .home-hero > img:nth-of-type(2) {
+    top: 7rem;
+    width: 10rem;
+  }
+
+  .home-hero > p {
+    top: 18rem;
+    width: 82%;
+    font-size: 0.9rem;
+  }
+
+  .home-hero > img:nth-of-type(3),
+  .home-hero > img:nth-of-type(4) {
+    bottom: 0;
+    height: 9rem;
+    max-width: 48%;
+  }
+
+  .home-hero > a {
+    left: 25%;
+    top: auto;
+    bottom: 1.5rem;
+    height: 3rem;
+    width: 50%;
+    font-size: 1.05rem;
+  }
+}
+</style>

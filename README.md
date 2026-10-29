@@ -4,9 +4,9 @@ Website profil Komunitas Batik Tiga Zaman. Tampilan berupa satu halaman panjang
 yang terdiri dari beberapa "halaman" bertumpuk, mengikuti artboard desain
 `1440 × 1024`.
 
-Fokus proyek saat ini adalah **kesetiaan visual terhadap desain**: posisi,
-proporsi, warna, dan tipografi dibuat mendekati screenshot referensi, bukan
-menggunakan layout responsif konvensional.
+Fokus proyek saat ini adalah **kesetiaan visual terhadap desain** pada desktop
+`1440 × 1024`, dengan layout mobile responsif untuk viewport sampai `700 px`.
+Posisi, proporsi, warna, dan tipografi dibuat mendekati screenshot referensi.
 
 ---
 
@@ -18,15 +18,17 @@ menggunakan layout responsif konvensional.
 | 2. About Us (dekoratif) | `#about` | `app/components/AboutDropdown.vue` | Selesai |
 | 3. About Us (detail + peta) | `#about-detail` | `app/components/AboutUsDetailSection.vue` | Selesai |
 | 4. What You Learn With Us | `#program` | `app/components/ProgramSection.vue` | Selesai |
-| 5. Testimoni | `#partners` (rencana) | `app/components/TestimonialSection.vue` (draft, belum dipasang) | Belum |
+| 5. Testimoni | `#testimonial` | `app/components/TestimonialSection.vue` | Selesai |
 
 Catatan:
 
-- Halaman 1–4 sudah tersusun berurutan di `app/pages/index.vue`
-  (`Hero → AboutDropdown → AboutUsDetailSection → ProgramSection`).
-- `AboutSection.vue`, `IntroSection.vue`, dan `TestimonialSection.vue` adalah
-  komponen lama/draft yang **belum dipakai**. Jangan hapus tanpa konfirmasi.
-- Referensi halaman kelima ada di `public/design/5.png` (Testimoni).
+- Halaman 1–5 sudah tersusun berurutan di `app/pages/index.vue`
+  (`Hero → AboutDropdown → AboutUsDetailSection → ProgramSection → Testimonial`).
+- `AboutSection.vue` dan `IntroSection.vue` adalah komponen lama/draft yang
+  **belum dipakai**. Jangan hapus tanpa konfirmasi.
+- `TestimonialSection.vue` sudah dipasang setelah `ProgramSection`.
+- Referensi komposit halaman kelima ada di `public/design/5.png`.
+- Asset individual halaman kelima berada di `public/halaman kelima/`.
 
 ---
 
@@ -131,13 +133,14 @@ Jangan mengarahkan Root Directory ke `webfinal`; folder itu sudah tidak ada.
 │     ├─ DecorativeFlower.vue      # bunga SVG/CSS (draft halaman 5)
 │     ├─ AboutSection.vue          # draft, belum dipakai
 │     ├─ IntroSection.vue          # draft, belum dipakai
-│     └─ TestimonialSection.vue    # draft halaman 5, belum dipakai
+│     └─ TestimonialSection.vue    # halaman 5
 ├─ public/
 │  ├─ halaman pertama/             # asset hero
 │  ├─ halaman kedua/               # asset halaman 2
 │  ├─ halaman ketiga/              # asset halaman 3
 │  ├─ halaman keempat/             # asset halaman 4
-│  └─ design/                      # referensi desain tambahan
+│  ├─ halaman kelima/              # asset individual halaman 5
+│  └─ design/                      # referensi + asset ikon search
 ├─ tailwind.config.ts              # token warna & font
 ├─ nuxt.config.ts
 └─ package.json
@@ -210,8 +213,8 @@ Navbar terpisah dari hero dan berada di dalam area hero setinggi `11.2%`.
 | Mitra Kami | `#home` | masih placeholder |
 | Home Page | `#home` | hero |
 
-Tombol "More Info" di hero menuju `#about` (halaman 2). Tombol search di navbar
-belum memiliki fungsi.
+Tombol "More Info" di hero menuju `#about` (halaman 2). Tombol search memakai
+asset `public/design/Vector(3).png`, tetapi fungsi pencarian belum dihubungkan.
 
 ---
 
@@ -225,12 +228,24 @@ belum memiliki fungsi.
 | `public/halaman kedua/` | `Rectangle 70.png`, `Rectangle 64.png`, `Vector(1).png` | `2.png` hanya referensi |
 | `public/halaman ketiga/` | peta, supergrafis, logo S/BS | `3.png` dan `image.png` hanya referensi |
 | `public/halaman keempat/` | wave, bunga, ellipse, ilustrasi | `4.png` hanya referensi |
+| `public/halaman kelima/` | foto, blob, bintang, garis | `5.png` hanya referensi komposit |
+| `public/design/` | referensi komposit + ikon search | `Vector(3).png` dipakai navbar |
 
 **Jangan memakai file komposit** (`1.png`, `2.png`, `3.png`, `4.png`,
-`image.png`) sebagai UI. File itu hanya screenshot acuan. UI harus disusun dari
-asset individual.
+`image.png`, atau `public/halaman kelima/5.png`) sebagai UI. File itu
+hanya screenshot acuan. UI harus disusun dari asset individual.
 
-### 7.2 URL encoding
+### 7.2 Responsive mobile
+
+- Breakpoint utama: `max-width: 700px`.
+- Hero memakai tinggi alur mobile; background memenuhi area sampai karakter.
+- `AboutDropdown` memakai susunan flow vertikal.
+- `AboutUsDetailSection` memakai komposisi diagonal: kartu S kiri-atas,
+  kartu BS kanan-bawah, supergrafis kiri memanjang, peta sebagian dari kanan.
+- `ProgramSection` dan `TestimonialSection` memakai susunan satu kolom.
+- Desktop tetap mempertahankan artboard `1440 × 1024`.
+
+### 7.3 URL encoding
 
 Nama file mengandung spasi. Di dalam `src` Vue, spasi di-encode:
 
@@ -240,7 +255,7 @@ Nama file mengandung spasi. Di dalam `src` Vue, spasi di-encode:
 
 Jangan mengganti nama asset tanpa memperbarui semua referensi.
 
-### 7.3 Asset turunan penting
+### 7.4 Asset turunan penting
 
 | File | Asal | Kenapa ada |
 | --- | --- | --- |
@@ -249,13 +264,13 @@ Jangan mengganti nama asset tanpa memperbarui semua referensi.
 Gunakan `Rectangle 69 - sambungan.png` di `ProgramSection.vue`. Jangan kembali
 ke `Rectangle 69.png` kecuali seam sudah diuji ulang.
 
-### 7.4 Logo kartu halaman 3
+### 7.5 Logo kartu halaman 3
 
 - Logo `S` (`IMG_4822 1.png`): memakai wrapper lingkaran hitam, `aspect-ratio: 1`.
 - Logo `BS` (`IMG_4819 3.png`): transparan, memakai rasio asli `239 / 292`,
   **tanpa** wrapper lingkaran.
 
-### 7.5 Fade supergrafis
+### 7.6 Fade supergrafis
 
 Supergrafis kiri halaman 3 (`.community-supergraphic`) memakai mask:
 
@@ -387,16 +402,17 @@ agent-browser screenshot /tmp/opencode/program-section.png
 
 ### Checklist visual
 
-- [ ] Tidak ada scroll horizontal.
-- [ ] Setiap section mempertahankan rasio `1440/1024`.
-- [ ] Teks tidak terpotong dan tidak menabrak asset lain.
+- [x] Tidak ada scroll horizontal pada viewport yang diuji.
+- [x] Setiap section mempertahankan rasio `1440/1024` di desktop.
+- [x] Teks tidak terpotong dan tidak menabrak asset lain pada screenshot mobile terakhir.
 - [ ] Warna hijau halaman 3 menyambung dengan kanopi wave halaman 4.
 - [ ] Tidak ada area cream/putih yang bocor di atas lengkung wave.
 - [ ] Supergrafis kiri memudar halus, tidak terpotong garis lurus.
 - [ ] Posisi judul dan kartu halaman 4 sejajar dengan referensi.
 - [ ] Logo S dan BS tidak terlihat "tidak pas" di wrapper-nya.
-- [ ] Anchor navbar menuju section yang benar.
-- [ ] `npm run build` lulus.
+- [ ] Anchor navbar menuju section yang benar; `Program` dan `Mitra Kami`
+      masih placeholder `#home`.
+- [x] `npm run build` lulus.
 
 ### Offset referensi (viewport 1440×1024)
 
@@ -408,6 +424,7 @@ Dengan keempat section pada rasio artboard:
 | `#about` | `1024` |
 | `#about-detail` | `2048` |
 | `#program` | `3072` |
+| `#testimonial` | `4096` |
 
 Offset bisa berubah jika ada section baru, margin, atau tinggi non-artboard.
 
@@ -448,13 +465,16 @@ Offset bisa berubah jika ada section baru, margin, atau tinggi non-artboard.
 
 ## 12. Backlog / next steps
 
-- [ ] Implementasi halaman 5 Testimoni dari `public/design/5.png`.
-      Draft `TestimonialSection.vue` belum memakai asset dan layout yang tepat.
+- [x] Implementasi halaman 5 Testimoni dari `public/design/5.png`.
+      Asset individual sudah dipasang di `TestimonialSection.vue`.
 - [ ] Lengkapi anchor navbar: "Program" dan "Mitra Kami" masih `#home`.
-- [ ] Implementasi atau hapus tombol search di navbar.
+- [x] Pasang asset ikon search di navbar (`public/design/Vector(3).png`).
+      Fungsi pencarian belum dihubungkan.
 - [ ] Rapikan komponen draft yang tidak dipakai (`AboutSection.vue`,
       `IntroSection.vue`) setelah konfirmasi.
-- [ ] Uji mobile 390×844 dan tablet 768×1024.
+- [x] Uji mobile 390×844, 403×750, 473×750, tablet 768×1024,
+      dan desktop 1440×1024.
+- [ ] Ubah tombol navigasi testimoni menjadi carousel aktif jika data testimoni kedua sudah tersedia.
 - [ ] Audit aksesibilitas: alt text ilustrasi dekoratif, kontras teks, focus ring.
 - [ ] Optimasi asset: beberapa PNG berukuran besar; pertimbangkan
       `NuxtImg`/kompresi tanpa mengubah tampilan.

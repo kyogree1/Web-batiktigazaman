@@ -3,26 +3,161 @@ const testimonial = 'Seru banget! Aku bisa bikin batik sendiri pakai cap. Awalny
 </script>
 
 <template>
-  <section id="partners" class="relative overflow-hidden bg-sand px-6 py-24 text-forest sm:px-12 lg:px-[8vw]" aria-labelledby="testimonial-title">
-    <div aria-hidden="true" class="absolute right-10 top-10 text-8xl text-yellow-400">★</div>
-    <div class="mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-2">
-      <div>
-        <span class="inline-block rounded-full bg-white px-6 py-3 text-xl font-extrabold text-[#d64d05]">Testimoni</span>
-        <h2 id="testimonial-title" class="mt-6 max-w-xl text-5xl font-extrabold leading-tight">See what our kids have to say</h2>
-        <p class="mt-6 max-w-xl text-xl leading-relaxed">{{ testimonial }}</p>
-      </div>
+  <section
+    id="testimonial"
+    class="testimonial-section relative aspect-[1440/1024] w-full overflow-hidden bg-[#edd4b8] text-[#1e3c2b]"
+    aria-labelledby="testimonial-title"
+  >
+    <span class="testimonial-label absolute left-[5.7%] top-[27.8%] z-20 flex h-[6.4%] w-[18.3%] items-center rounded-full bg-[#f7f1ef] px-[1.5%] text-[clamp(1rem,2.1vw,1.9rem)] font-extrabold text-[#cb4c08]">
+      Testimoni
+    </span>
 
-      <div class="relative">
-        <div class="absolute -top-12 left-1/2 h-16 w-3/4 -translate-x-1/2 rounded-[50%] border-b-8 border-forest" />
-        <div class="rotate-3 overflow-hidden rounded-[35%_45%_35%_45%] border-[12px] border-[#d64d05] bg-white shadow-xl">
-          <img
-            src="/halaman%20pertama/IMG_3486%201.png"
-            alt="Peserta mengikuti kegiatan membatik"
-            class="aspect-[4/3] h-full w-full object-cover"
-          >
-        </div>
-        <div aria-hidden="true" class="absolute -bottom-10 left-0 text-8xl text-yellow-400">★</div>
-      </div>
-    </div>
+    <h2
+      id="testimonial-title"
+      class="absolute left-[5.7%] top-[35.4%] z-20 w-[42%] text-[clamp(2rem,3.35vw,3rem)] font-extrabold leading-[1.52] tracking-[-0.035em]"
+    >
+      See what our kids have<br class="testimonial-line-break"> to say
+    </h2>
+
+    <p class="absolute left-[5.7%] top-[49.2%] z-20 w-[41.5%] text-[clamp(0.9rem,1.55vw,1.4rem)] leading-[1.48]">
+      Seru banget! Aku bisa bikin batik sendiri pakai<br class="testimonial-line-break">
+      cap. Awalnya agak takut karena lilinnya panas,<br class="testimonial-line-break">
+      tapi pengajarnya bantuin pelan-pelan. Aku juga<br class="testimonial-line-break">
+      paling suka pas mewarnai, warnanya bagus-<br class="testimonial-line-break">
+      bagus banget! Sekarang aku jadi bisa, hehe!
+    </p>
+
+    <img
+      src="/halaman%20kelima/Line%209.png"
+      alt=""
+      aria-hidden="true"
+      class="absolute left-[55.8%] top-[28.7%] z-10 w-[26.3%]"
+    >
+    <img
+      src="/halaman%20kelima/Line%2010.png"
+      alt=""
+      aria-hidden="true"
+      class="absolute left-[58.4%] top-[27.7%] z-10 w-[19.2%]"
+    >
+
+    <img
+      src="/halaman%20kelima/Rectangle%2085.png"
+      alt=""
+      aria-hidden="true"
+      class="absolute left-[50%] top-[35.5%] z-10 w-[41.5%]"
+    >
+    <img
+      src="/halaman%20kelima/Mask%20group.png"
+      alt="Anak-anak mengikuti kegiatan membatik"
+      class="absolute left-[48.8%] top-[34.8%] z-20 w-[40.9%]"
+    >
+
+    <img
+      src="/halaman%20kelima/kuning%20emas_20260814121731%201.png"
+      alt=""
+      aria-hidden="true"
+      class="absolute left-[84.2%] top-[13.2%] z-20 w-[10.5%]"
+    >
+    <img
+      src="/halaman%20kelima/kuning%20emas_20260814121731%201.png"
+      alt=""
+      aria-hidden="true"
+      class="absolute left-[47.5%] top-[67.7%] z-30 w-[10.5%]"
+    >
+
+    <button
+      type="button"
+      disabled
+      aria-label="Testimoni sebelumnya"
+      class="absolute left-[45.1%] top-[56.3%] z-30 grid size-[3.6%] min-h-10 min-w-10 place-items-center rounded-full bg-[#f7f1ef] text-[clamp(1.25rem,2.2vw,2rem)] leading-none text-[#1e3c2b] disabled:cursor-default"
+    >
+      <span aria-hidden="true">←</span>
+    </button>
+    <button
+      type="button"
+      disabled
+      aria-label="Testimoni berikutnya"
+      class="absolute left-[88%] top-[58.4%] z-30 grid size-[3.6%] min-h-10 min-w-10 place-items-center rounded-full bg-[#f7f1ef] text-[clamp(1.25rem,2.2vw,2rem)] leading-none text-[#1e3c2b] disabled:cursor-default"
+    >
+      <span aria-hidden="true">→</span>
+    </button>
   </section>
 </template>
+
+<style scoped>
+@media (max-width: 700px) {
+  .testimonial-line-break {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .testimonial-section {
+    aspect-ratio: auto;
+    min-height: 62rem;
+    padding: 5rem 1rem 4rem;
+  }
+
+  .testimonial-label,
+  #testimonial-title,
+  .testimonial-section > p {
+    position: relative;
+    inset: auto;
+    display: block;
+    width: min(22rem, 90vw);
+    margin-inline: auto;
+  }
+
+  .testimonial-label {
+    height: auto;
+    padding: 0.65rem 1.5rem;
+    text-align: center;
+  }
+
+  #testimonial-title {
+    margin-top: 1.5rem;
+    font-size: clamp(2rem, 10vw, 3rem);
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  .testimonial-section > p {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .testimonial-section > img,
+  .testimonial-section > button {
+    position: relative;
+    inset: auto;
+  }
+
+  .testimonial-section > img:nth-of-type(1),
+  .testimonial-section > img:nth-of-type(2),
+  .testimonial-section > img:nth-of-type(3),
+  .testimonial-section > img:nth-of-type(4),
+  .testimonial-section > img:nth-of-type(5) {
+    display: block;
+    width: min(22rem, 90vw);
+    margin: 2rem auto 0;
+  }
+
+  .testimonial-section > img:nth-of-type(3) {
+    margin-top: -1rem;
+  }
+
+  .testimonial-section > img:nth-of-type(4) {
+    margin-top: -21rem;
+  }
+
+  .testimonial-section > img:nth-of-type(5) {
+    width: 6rem;
+    margin: 1rem auto 0;
+  }
+
+  .testimonial-section > button {
+    display: none;
+  }
+}
+</style>

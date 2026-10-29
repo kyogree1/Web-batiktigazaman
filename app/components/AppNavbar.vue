@@ -35,10 +35,12 @@ const navigation = [
         aria-label="Cari"
         class="grid size-10 place-items-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cream"
       >
-        <span
+        <img
+          src="/design/Vector(3).png"
+          alt=""
           aria-hidden="true"
-          class="relative block size-[18px] rounded-full border-2 border-cream after:absolute after:-right-[45%] after:bottom-[-35%] after:h-2 after:w-0.5 after:rotate-[-42deg] after:bg-cream"
-        />
+          class="block size-[21px] object-contain"
+        >
       </button>
     </nav>
   </header>

@@ -49,7 +49,7 @@ const learningCards = [
 
     <h2
       id="about-us-title"
-      class="absolute right-[7.5%] top-[9.3%] z-20 text-[clamp(1.35rem,2.6vw,2.5rem)] font-extrabold leading-none text-[#dba658]"
+      class="absolute right-[7.5%] top-[9.3%] z-20 text-[clamp(2.4rem,4.5vw,4.25rem)] font-extrabold leading-none text-[#dba658]"
     >
       About Us
     </h2>
@@ -67,6 +67,74 @@ const learningCards = [
 </template>
 
 <style scoped>
+@media (max-width: 700px) {
+  .community-detail {
+    aspect-ratio: auto;
+    min-height: 56rem;
+    padding: 5rem 1.25rem 4rem;
+  }
+
+  .community-supergraphic {
+    width: 2.5rem;
+  }
+
+  .community-card {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: min(15rem, 68vw);
+    height: auto;
+    min-height: 19rem;
+    margin-inline: auto;
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .community-card--first {
+    margin-top: 1rem;
+  }
+
+  .community-card--second {
+    margin-top: 1.5rem;
+  }
+
+  .community-card-logo,
+  .community-card-logo--bs {
+    width: min(8rem, 42vw);
+  }
+
+  .community-card-copy {
+    margin-top: 1.25rem;
+    font-size: 0.85rem;
+  }
+
+  #about-us-title {
+    position: relative;
+    inset: auto;
+    margin: 2rem 0 1rem;
+    font-size: clamp(2.4rem, 11vw, 3.25rem);
+    text-align: center;
+  }
+
+  .community-map {
+    position: relative;
+    left: auto;
+    top: auto;
+    display: block;
+    width: min(33rem, 96vw);
+    margin: 2rem auto 0;
+  }
+
+  .community-detail > p {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: min(34rem, 90vw);
+    margin: 2rem auto 0;
+    font-size: 1rem;
+  }
+}
+
+
 .community-supergraphic {
   mask-image: linear-gradient(to bottom, #000 82%, transparent 99%);
   -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 99%);
@@ -117,12 +185,79 @@ const learningCards = [
 }
 
 @media (max-width: 700px) {
+  .community-detail {
+    min-height: 56rem;
+    padding: 0;
+  }
+
+  .community-supergraphic {
+    width: 3.5rem;
+  }
+
   .community-card {
-    border-radius: 3rem;
+    position: absolute;
+    left: auto;
+    top: auto;
+    width: 40%;
+    height: 19rem;
+    min-height: 0;
+    margin: 0;
+    padding: 1.5rem 0.75rem 1.25rem;
+    border-radius: 4rem;
+  }
+
+  .community-card--first {
+    left: 20%;
+    top: 4.5rem;
+  }
+
+  .community-card--second {
+    left: 58%;
+    top: 19.25rem;
+    width: 38%;
+    height: 18rem;
+  }
+
+  .community-card-logo {
+    width: 72%;
+  }
+
+  .community-card-logo--bs {
+    width: 76%;
   }
 
   .community-card-copy {
-    font-size: clamp(0.62rem, 1.4vw, 0.82rem);
+    margin-top: 1.25rem;
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+
+  #about-us-title {
+    position: absolute;
+    left: 260%;
+    right: auto;
+    top: 7%;
+    margin: 0;
+    width: max-content;
+  }
+
+  .community-map {
+    position: absolute;
+    left: 79%;
+    top: 2rem;
+    display: block;
+    width: 140%;
+    margin: 0;
+  }
+
+  .community-detail > p {
+    position: absolute;
+    left: 260%;
+    right: auto;
+    bottom: auto;
+    top: 35%;
+    width: 80%;
+    margin: 0;
   }
 }
 </style>

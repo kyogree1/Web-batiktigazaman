@@ -76,6 +76,61 @@ const programs = [
 </template>
 
 <style scoped>
+@media (max-width: 700px) {
+  .program-section {
+    aspect-ratio: auto;
+    min-height: 74rem;
+    padding: 10rem 1rem 4rem;
+  }
+
+  .program-section > img:first-child {
+    height: 9rem;
+    width: 100%;
+  }
+
+  .program-section > img:nth-child(2) {
+    left: -5.5rem;
+    top: -1rem;
+    width: 9rem;
+  }
+
+  #program-title {
+    position: relative;
+    z-index: 20;
+    inset: auto;
+    width: 100%;
+    margin: 0 auto 2.5rem;
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .program-grid {
+    position: relative;
+    left: auto;
+    top: auto;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .program-item-title {
+    margin-top: 1rem;
+    font-size: 1.15rem;
+  }
+
+  .program-item-copy {
+    max-width: 18rem;
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .program-visual {
+    width: min(19rem, 82vw);
+    margin-inline: auto;
+  }
+}
+
+
 .program-grid {
   display: grid;
   grid-template-columns: repeat(3, 30.7%);
@@ -102,15 +157,21 @@ const programs = [
 
 @media (max-width: 700px) {
   .program-grid {
-    grid-template-columns: repeat(3, 30.7%);
+    display: flex;
+    grid-template-columns: none;
+    flex-direction: column;
+    gap: 3rem;
   }
 
   .program-item-title {
-    font-size: clamp(0.55rem, 2.2vw, 0.95rem);
+    margin-top: 1rem;
+    font-size: 1.15rem;
   }
 
   .program-item-copy {
-    font-size: clamp(0.45rem, 1.8vw, 0.72rem);
+    max-width: 18rem;
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
   }
 }
 </style>
