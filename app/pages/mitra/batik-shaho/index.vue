@@ -3,10 +3,10 @@ const NuxtLink = resolveComponent('NuxtLink')
 const base = '/design/halaman_mitra_batik_shaho/1'
 
 const actions = [
-  { label: 'Maps', icon: 'at-icons_location.png', bg: '#ff340c' },
+  { label: 'Maps', icon: 'at-icons_location.png', bg: '#ff340c', to: '/mitra/batik-shaho/maps' },
   { label: 'Contact', icon: 'Vector.png', bg: '#cbc308' },
   { label: 'Motif', icon: 'mdi_palette.png', bg: '#f03272', to: '/mitra/batik-shaho/motif' },
-  { label: 'Date', icon: 'akar-icons_calendar.png', bg: '#9ab3eb' },
+  { label: 'Date', icon: 'akar-icons_calendar.png', bg: '#9ab3eb', to: '/mitra/batik-shaho/date' },
 ]
 </script>
 

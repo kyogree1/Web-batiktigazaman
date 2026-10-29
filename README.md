@@ -21,6 +21,8 @@ Posisi, proporsi, warna, dan tipografi dibuat mendekati screenshot referensi.
 | 5. Testimoni | `#testimonial` | `app/components/TestimonialSection.vue` | Selesai |
 | 6. Mitra: Batik Shaho | `/mitra/batik-shaho` | `app/pages/mitra/batik-shaho/index.vue` | Selesai |
 | 7. Jenis Motif Batik | `/mitra/batik-shaho/motif` | `app/pages/mitra/batik-shaho/motif.vue` | Selesai |
+| 8. Maps Batik Shaho | `/mitra/batik-shaho/maps` | `app/pages/mitra/batik-shaho/maps.vue` | Selesai |
+| 9. Reservasi Batik Shaho | `/mitra/batik-shaho/date` | `app/pages/mitra/batik-shaho/date.vue` | Selesai |
 
 Catatan:
 
@@ -37,6 +39,11 @@ Catatan:
 - Halaman Jenis Motif Batik (`/mitra/batik-shaho/motif`) dibuat dari
   `public/design/jenis_motif_batik/2/Frame 23 (1).png`; tombol Motif pada
   halaman mitra menjadi tautan ke sini.
+- Halaman Maps (`/mitra/batik-shaho/maps`) dan halaman reservasi Batik Shaho
+  (`/mitra/batik-shaho/date`) memakai aset individual dari `public/design/maps/4/`
+  dan `public/design/date/5/`. Halaman reservasi menumpuk tiga artboard dari
+  atas ke bawah: ketentuan, pricelist, lalu reservasi; satu tombol kembali ke
+  halaman Batik Shaho tersedia di artboard terakhir.
 
 ---
 
