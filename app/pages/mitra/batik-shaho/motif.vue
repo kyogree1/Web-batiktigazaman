@@ -80,6 +80,15 @@ const clips = [
       class="absolute left-[7.99%] top-[17.38%] w-[13.13%] max-w-none"
     >
 
+    <NuxtLink
+      to="/mitra/batik-shaho"
+      aria-label="Kembali ke Batik Shaho"
+      class="absolute left-[3.5%] top-[4.5%] z-20 inline-flex items-center gap-[0.55vw] rounded-full bg-[#1e3c2b] px-[1.35vw] py-[0.65vw] text-[1.15vw] font-extrabold text-[#f7f1ef] shadow-[0_0.35vw_0.8vw_rgba(30,60,43,0.2)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#cb4c08] focus-visible:-translate-y-0.5 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#cb4c08] max-[700px]:left-4 max-[700px]:top-4 max-[700px]:gap-1.5 max-[700px]:px-3 max-[700px]:py-2 max-[700px]:text-sm"
+    >
+      <span aria-hidden="true" class="text-[1.35em] leading-none">←</span>
+      <span>Kembali</span>
+    </NuxtLink>
+
     <component
       :is="NuxtLink"
       v-for="card in cards"
