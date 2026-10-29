@@ -1,5 +1,5 @@
 <template>
-  <main id="home" class="bg-forest">
+  <main id="home" class="overflow-x-clip bg-forest">
     <section class="home-hero relative aspect-[1440/1024] w-full overflow-hidden" aria-label="Halaman utama">
       <div class="absolute inset-x-0 top-0 z-40 h-[11.2%] bg-forest home-hero-nav">
         <AppNavbar />
