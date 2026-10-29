@@ -58,7 +58,7 @@ const selectedMotif = computed(() => motifs.find((motif) => motif.id === route.p
 
     <NuxtLink
       to="/mitra/batik-shaho/motif"
-      class="absolute left-[3.5%] top-[4%] z-10 inline-flex items-center gap-2 rounded-full border border-[#1e3c2b]/30 bg-[#edd4b8]/90 px-[1.2vw] py-[0.65vw] text-[1.05vw] font-bold text-[#1e3c2b] shadow-sm transition hover:bg-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-[#cb4c08] max-[700px]:left-4 max-[700px]:top-4 max-[700px]:px-4 max-[700px]:py-2 max-[700px]:text-sm"
+      class="absolute left-[3.5%] top-[4%] z-10 inline-flex items-center gap-2 rounded-full bg-forest px-[1.2vw] py-[0.65vw] text-[1.05vw] font-bold text-white shadow-lg transition-transform hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest max-[700px]:left-4 max-[700px]:top-4 max-[700px]:px-4 max-[700px]:py-2 max-[700px]:text-sm"
     >
       <span aria-hidden="true">←</span>
       Kembali ke Jenis Motif

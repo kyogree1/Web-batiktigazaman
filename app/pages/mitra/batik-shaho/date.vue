@@ -11,7 +11,7 @@ const base = '/design/date/5'
         <NuxtLink
           to="/mitra/batik-shaho"
           aria-label="Kembali ke Batik Shaho"
-          class="absolute left-[3.5%] top-[4%] z-30 inline-flex items-center gap-2 rounded-full border border-[#1e3c2b]/30 bg-[#edd4b8]/90 px-[1.2vw] py-[0.65vw] text-[1.05vw] font-bold text-[#1e3c2b] shadow-sm transition hover:bg-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-[#cb4c08] max-[700px]:left-4 max-[700px]:top-4 max-[700px]:px-4 max-[700px]:py-2 max-[700px]:text-sm"
+          class="absolute left-[3.5%] top-[4%] z-30 inline-flex items-center gap-2 rounded-full bg-forest px-[1.2vw] py-[0.65vw] text-[1.05vw] font-bold text-white shadow-lg transition-transform hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest max-[700px]:left-4 max-[700px]:top-4 max-[700px]:px-4 max-[700px]:py-2 max-[700px]:text-sm"
         >
           <span aria-hidden="true">←</span>
           Kembali ke Batik Shaho
@@ -197,7 +197,7 @@ const base = '/design/date/5'
         >
         <NuxtLink
           to="/mitra/batik-shaho"
-          class="absolute left-[56.5%] top-[48.1%] grid h-[20%] w-[35.2%] place-items-center rounded-full bg-[#cb4c08] px-[2%] text-center text-[clamp(0.85rem,1.8vw,1.6rem)] font-semibold text-white transition hover:brightness-110 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#1e3c2b]"
+          class="absolute left-[56.5%] top-[48.1%] grid h-[20%] w-[35.2%] place-items-center rounded-full bg-forest px-[2%] text-center text-[clamp(0.85rem,1.8vw,1.6rem)] font-semibold text-white shadow-lg transition-transform hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest"
         >
           Kembali ke Batik Shaho
         </NuxtLink>
