@@ -85,8 +85,10 @@ const clips = [
       aria-label="Kembali ke Batik Shaho"
       class="absolute left-[0.7%] top-[0.6%] z-20 inline-flex items-center gap-[0.7vw] rounded-full bg-[#1e3c2b] px-[1.5vw] py-[0.75vw] text-[1.15vw] font-extrabold text-[#f7f1ef] shadow-[0_0.35vw_0.8vw_rgba(30,60,43,0.2)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#cb4c08] focus-visible:-translate-y-0.5 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#cb4c08] max-[700px]:left-4 max-[700px]:top-4 max-[700px]:gap-1.5 max-[700px]:px-3 max-[700px]:py-2 max-[700px]:text-sm"
     >
-      <span aria-hidden="true" class="text-[1.35em] leading-none">←</span>
-      <span>Kembali</span>
+      <svg aria-hidden="true" viewBox="0 0 32 20" class="h-[1.15em] w-[1.85em] shrink-0 fill-none stroke-current stroke-[2] leading-none">
+        <path d="M30 10H3M3 10l8-8M3 10l8 8" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <span class="leading-none">Kembali</span>
     </NuxtLink>
 
     <component
