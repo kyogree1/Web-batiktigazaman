@@ -43,7 +43,7 @@ const learningCards = [
       v-for="card in learningCards"
       :key="card.image"
       :to="card.to"
-      class="community-card absolute z-20 flex flex-col items-center border border-cream/50 bg-[#4b6257] text-center"
+      class="community-card absolute z-20 flex flex-col items-center border border-[#9f9b83] bg-[#435b4e] text-center text-[#edd4b8] transition-transform hover:scale-[1.01]"
       :class="card.className"
       :aria-label="card.to ? 'Lihat profil ' + card.alt : undefined"
     >
@@ -147,10 +147,10 @@ const learningCards = [
 }
 
 .community-card {
-  width: 17.5%;
-  height: 49%;
+  width: 17.3%;
+  height: 48.5%;
   border-radius: 7rem;
-  padding: 3.2% 1.8% 2.8%;
+  padding: 3.2% 2% 2.8%;
 }
 
 .community-card--first {
@@ -160,13 +160,19 @@ const learningCards = [
 
 .community-card--second {
   left: 24%;
-  top: 46%;
+  top: 45.8%;
+  width: 16.3%;
+  height: 45.7%;
 }
 
 .community-card-logo {
-  width: 72%;
+  position: absolute;
+  left: 50%;
+  top: 8.4%;
+  width: 78%;
   aspect-ratio: 1;
   flex: none;
+  transform: translateX(-50%);
 }
 
 .community-card-logo--s {
@@ -176,12 +182,17 @@ const learningCards = [
 }
 
 .community-card-logo--bs {
-  width: 82%;
+  top: 3.2%;
+  width: 98%;
   aspect-ratio: 239 / 292;
 }
 
 .community-card-copy {
-  margin-top: clamp(1.5rem, 3.5vw, 3.25rem);
+  position: absolute;
+  left: 10%;
+  top: 60%;
+  width: 80%;
+  margin: 0;
   font-size: clamp(0.8rem, 1.1vw, 1.1rem);
   line-height: 1.42;
 }
@@ -205,10 +216,10 @@ const learningCards = [
     left: auto;
     top: auto;
     width: 40%;
-    height: 19rem;
+    height: 19.5rem;
     min-height: 0;
     margin: 0;
-    padding: 1.5rem 0.75rem 1.25rem;
+    padding: 1.5rem 0.85rem 1.25rem;
     border-radius: 4rem;
   }
 
@@ -220,21 +231,28 @@ const learningCards = [
   .community-card--second {
     left: 58%;
     top: 19.25rem;
-    width: 38%;
-    height: 18rem;
+    width: 39%;
+    height: 19.5rem;
   }
 
   .community-card-logo {
-    width: 72%;
+    position: static;
+    width: 68%;
+    transform: none;
   }
 
   .community-card-logo--bs {
-    width: 76%;
+    position: static;
+    top: auto;
+    width: 72%;
+    transform: none;
   }
 
   .community-card-copy {
-    margin-top: 1.25rem;
-    font-size: 0.78rem;
+    position: static;
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 0.75rem;
     line-height: 1.35;
   }
 
