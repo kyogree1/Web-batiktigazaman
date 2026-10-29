@@ -1,11 +1,14 @@
 <script setup lang="ts">
+const NuxtLink = resolveComponent('NuxtLink')
+
 const learningCards = [
   {
     image: '/halaman%20ketiga/IMG_4822%201.png',
-    alt: 'Logo S teknik cap batik',
+    alt: 'Logo Batik Shaho',
     text: 'Peserta dapat belajar membuat motif batik menggunakan teknik cap dengan mudah dan menyenangkan.',
     className: 'community-card--first',
     logoClass: 'community-card-logo--s',
+    to: '/mitra/batik-shaho',
   },
   {
     image: '/halaman%20ketiga/IMG_4819%203.png',
@@ -35,17 +38,20 @@ const learningCards = [
       >
     </picture>
 
-    <div
+    <component
+      :is="card.to ? NuxtLink : 'div'"
       v-for="card in learningCards"
       :key="card.image"
+      :to="card.to"
       class="community-card absolute z-20 flex flex-col items-center border border-cream/50 bg-[#4b6257] text-center"
       :class="card.className"
+      :aria-label="card.to ? 'Lihat profil ' + card.alt : undefined"
     >
       <div class="community-card-logo grid place-items-center" :class="card.logoClass">
         <img :src="card.image" :alt="card.alt" class="block size-full object-contain">
       </div>
       <p class="community-card-copy">{{ card.text }}</p>
-    </div>
+    </component>
 
     <h2
       id="about-us-title"

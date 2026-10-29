@@ -19,6 +19,7 @@ Posisi, proporsi, warna, dan tipografi dibuat mendekati screenshot referensi.
 | 3. About Us (detail + peta) | `#about-detail` | `app/components/AboutUsDetailSection.vue` | Selesai |
 | 4. What You Learn With Us | `#program` | `app/components/ProgramSection.vue` | Selesai |
 | 5. Testimoni | `#testimonial` | `app/components/TestimonialSection.vue` | Selesai |
+| 6. Mitra: Batik Shaho | `/mitra/batik-shaho` | `app/pages/mitra/batik-shaho.vue` | Selesai |
 
 Catatan:
 
@@ -29,6 +30,9 @@ Catatan:
 - `TestimonialSection.vue` sudah dipasang setelah `ProgramSection`.
 - Referensi komposit halaman kelima ada di `public/design/5.png`.
 - Asset individual halaman kelima berada di `public/halaman kelima/`.
+- Halaman mitra Batik Shaho (`/mitra/batik-shaho`) dibuat dari `Frame 22.png` di
+  `public/design/halaman_mitra_batik_shaho/1/`. Kartu logo S (Batik Shaho) pada
+  halaman 3 (`AboutUsDetailSection.vue`) menjadi tautan ke halaman ini.
 
 ---
 
