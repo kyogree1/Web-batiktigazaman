@@ -1,10 +1,11 @@
 ﻿<script setup lang="ts">
+const NuxtLink = resolveComponent('NuxtLink')
 const base = '/design/halaman_mitra_batik_shaho/1'
 
 const actions = [
   { label: 'Maps', icon: 'at-icons_location.png', bg: '#ff340c' },
   { label: 'Contact', icon: 'Vector.png', bg: '#cbc308' },
-  { label: 'Motif', icon: 'mdi_palette.png', bg: '#f03272' },
+  { label: 'Motif', icon: 'mdi_palette.png', bg: '#f03272', to: '/mitra/batik-shaho/motif' },
   { label: 'Date', icon: 'akar-icons_calendar.png', bg: '#9ab3eb' },
 ]
 </script>
@@ -59,10 +60,12 @@ const actions = [
       </p>
     </div>
 
-    <ul class="absolute left-[48.3%] top-[68.55%] grid w-[31.5%] grid-cols-2 gap-x-[1vw] gap-y-[1.9vw]">
-      <li
+    <div class="absolute left-[48.3%] top-[68.55%] grid w-[31.5%] grid-cols-2 gap-x-[1vw] gap-y-[1.9vw]">
+      <component
+        :is="action.to ? NuxtLink : 'div'"
         v-for="action in actions"
         :key="action.label"
+        :to="action.to"
         class="flex h-[5.42vw] items-center gap-[7%] rounded-full pl-[6%] pr-[4%] font-bold text-white"
         :style="{ backgroundColor: action.bg }"
       >
@@ -70,10 +73,12 @@ const actions = [
           <img :src="`${base}/${action.icon}`" alt="" class="w-[52%]">
         </span>
         <span class="flex-1 text-center font-extrabold text-[1.93vw]">{{ action.label }}</span>
-      </li>
-    </ul>
+      </component>
+    </div>
   </main>
 </template>
+
+
 
 
 

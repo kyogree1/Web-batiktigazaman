@@ -19,7 +19,8 @@ Posisi, proporsi, warna, dan tipografi dibuat mendekati screenshot referensi.
 | 3. About Us (detail + peta) | `#about-detail` | `app/components/AboutUsDetailSection.vue` | Selesai |
 | 4. What You Learn With Us | `#program` | `app/components/ProgramSection.vue` | Selesai |
 | 5. Testimoni | `#testimonial` | `app/components/TestimonialSection.vue` | Selesai |
-| 6. Mitra: Batik Shaho | `/mitra/batik-shaho` | `app/pages/mitra/batik-shaho.vue` | Selesai |
+| 6. Mitra: Batik Shaho | `/mitra/batik-shaho` | `app/pages/mitra/batik-shaho/index.vue` | Selesai |
+| 7. Jenis Motif Batik | `/mitra/batik-shaho/motif` | `app/pages/mitra/batik-shaho/motif.vue` | Selesai |
 
 Catatan:
 
@@ -33,6 +34,9 @@ Catatan:
 - Halaman mitra Batik Shaho (`/mitra/batik-shaho`) dibuat dari `Frame 22.png` di
   `public/design/halaman_mitra_batik_shaho/1/`. Kartu logo S (Batik Shaho) pada
   halaman 3 (`AboutUsDetailSection.vue`) menjadi tautan ke halaman ini.
+- Halaman Jenis Motif Batik (`/mitra/batik-shaho/motif`) dibuat dari
+  `public/design/jenis_motif_batik/2/Frame 23 (1).png`; tombol Motif pada
+  halaman mitra menjadi tautan ke sini.
 
 ---
 
