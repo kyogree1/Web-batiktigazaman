@@ -4,6 +4,15 @@ const base = '/design/maps_bs'
 
 <template>
   <main class="relative aspect-[1440/1024] w-full overflow-hidden bg-[#edd4b8] text-white max-[700px]:aspect-auto max-[700px]:min-h-[100svh]" aria-labelledby="maps-title">
+    <NuxtLink
+      to="/"
+      aria-label="Kembali ke Home"
+      class="absolute left-[3.5%] top-[4%] z-40 inline-flex items-center gap-2 rounded-full bg-forest px-[1.2vw] py-[0.65vw] text-[1.05vw] font-bold text-white shadow-lg transition-transform hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest max-[700px]:fixed max-[700px]:left-4 max-[700px]:top-4 max-[700px]:px-4 max-[700px]:py-2 max-[700px]:text-sm"
+    >
+      <span aria-hidden="true">←</span>
+      Kembali ke Home
+    </NuxtLink>
+
     <img :src="`${base}/detail%20kain%20batik%201.png`" alt="" aria-hidden="true" class="absolute left-[-25%] top-[-75%] z-0 h-auto w-[135%] max-w-none">
 
     <img :src="`${base}/Rectangle%2098.png`" alt="" aria-hidden="true" class="absolute bottom-0 left-0 z-0 h-[22.5%] w-full max-w-none object-fill">

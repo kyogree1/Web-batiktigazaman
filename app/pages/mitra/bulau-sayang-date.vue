@@ -5,6 +5,15 @@ const base = '/design/date_bs'
 <template>
   <main class="flex w-full flex-col overflow-x-hidden bg-[#edd4b8] text-[#1e3c2b]" aria-label="Informasi tanggal dan pemesanan Batik Bulau Sayang">
     <section id="pricelist" class="relative aspect-[1440/1024] w-full overflow-hidden bg-[#edd4b8] max-[700px]:aspect-auto max-[700px]:min-h-[100svh]" aria-labelledby="pricelist-heading">
+      <NuxtLink
+        to="/"
+        aria-label="Kembali ke Home"
+        class="absolute left-[3.5%] top-[4%] z-40 inline-flex items-center gap-2 rounded-full bg-forest px-[1.2vw] py-[0.65vw] text-[1.05vw] font-bold text-white shadow-lg transition-transform hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest max-[700px]:fixed max-[700px]:left-4 max-[700px]:top-4 max-[700px]:px-4 max-[700px]:py-2 max-[700px]:text-sm"
+      >
+        <span aria-hidden="true">←</span>
+        Kembali ke Home
+      </NuxtLink>
+
       <img :src="`${base}/Vector.png`" alt="" aria-hidden="true" class="absolute left-[-4%] top-[-8%] z-10 w-[26%] max-w-none">
       <img :src="`${base}/12%20(1)%202.png`" alt="" aria-hidden="true" class="absolute right-[-2%] top-[-3%] z-10 w-[23%] max-w-none">
       <img :src="`${base}/12%20(1)%201.png`" alt="" aria-hidden="true" class="absolute bottom-[-7%] left-[-4%] z-10 w-[25%] max-w-none">
@@ -51,9 +60,6 @@ const base = '/design/date_bs'
       <div class="absolute left-[56.5%] top-[48.1%] grid h-[20%] w-[35.2%] place-items-center rounded-full bg-[#cb4c08]">
         <img :src="`${base}/Reserve!.png`" alt="Reserve!" class="w-[39%] max-w-none">
       </div>
-      <NuxtLink to="/mitra/bulau-sayang" class="absolute bottom-[3%] right-[3%] rounded-full bg-[#1e3c2b] px-[2.2%] py-[1%] text-[clamp(0.75rem,1.2vw,1rem)] font-bold text-white shadow-md transition hover:brightness-110 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#cb4c08]">
-        Kembali ke Bulau Sayang
-      </NuxtLink>
     </section>
   </main>
 </template>

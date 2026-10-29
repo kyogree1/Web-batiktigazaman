@@ -4,7 +4,7 @@ const base = '/design/halaman_mitra_bulau_sayang/6'
 
 const actions = [
   { label: 'Maps', labelImage: 'Maps.png', labelLeft: '53%', labelWidth: '27%', icon: 'at-icons_location.png', iconLeft: '13.5%', iconWidth: '13.7%', iconHeight: '36%', iconFit: 'contain', plate: 'Ellipse 43.png', bg: 'Union.png', to: '/mitra/bulau-sayang-maps' },
-  { label: 'Contact', labelImage: 'Contact.png', labelLeft: '43%', labelWidth: '46%', icon: 'Vector-1.png', iconLeft: '14%', iconWidth: '12%', iconHeight: '32%', iconFit: 'fill', plate: 'Ellipse 44.png', bg: 'Union-3.png' },
+  { label: 'Contact', labelImage: 'Contact.png', labelLeft: '43%', labelWidth: '46%', icon: 'Vector-1.png', iconLeft: '14%', iconWidth: '12%', iconHeight: '32%', iconFit: 'fill', plate: 'Ellipse 44.png', bg: 'Union-3.png', href: 'https://wa.me/6281348747700', ariaLabel: 'Hubungi Batik Bulau Sayang melalui WhatsApp' },
   { label: 'Motif', labelImage: 'Motif.png', labelLeft: '53%', labelWidth: '27%', icon: 'mdi_palette.png', iconLeft: '12.2%', iconWidth: '15.5%', iconHeight: '41.5%', iconFit: 'fill', plate: 'Ellipse 45.png', bg: 'Union-1.png', to: '/mitra/bulau-sayang-motif' },
   { label: 'Date', labelImage: 'Date.png', labelLeft: '52%', labelWidth: '29%', icon: 'akar-icons_calendar.png', iconLeft: '14%', iconWidth: '12%', iconHeight: '32%', iconFit: 'fill', plate: 'Ellipse 46.png', bg: 'Union-2.png', to: '/mitra/bulau-sayang-date' },
 ]
@@ -15,6 +15,15 @@ const actions = [
     class="bulau-page relative aspect-[1440/1024] w-full overflow-hidden bg-[#edd4b8] text-[#1e3c2b] max-[700px]:aspect-auto max-[700px]:min-h-[100svh]"
     aria-labelledby="bulau-title"
   >
+    <NuxtLink
+      to="/"
+      aria-label="Kembali ke Home"
+      class="absolute left-[3.5%] top-[4%] z-30 inline-flex items-center gap-2 rounded-full bg-forest px-[1.2vw] py-[0.65vw] text-[1.05vw] font-bold text-white shadow-lg transition-transform hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest max-[700px]:fixed max-[700px]:left-4 max-[700px]:top-4 max-[700px]:px-4 max-[700px]:py-2 max-[700px]:text-sm"
+    >
+      <span aria-hidden="true">←</span>
+      Kembali ke Home
+    </NuxtLink>
+
     <img
       :src="`${base}/Ellipse%2041.png`"
       alt=""
@@ -59,12 +68,15 @@ const actions = [
 
     <div class="bulau-actions absolute left-[48.3%] top-[68.5%] z-20 grid w-[31.6%] grid-cols-2 gap-x-[3%] gap-y-[1.8vw] max-[700px]:static max-[700px]:mx-auto max-[700px]:mt-8 max-[700px]:w-[88%] max-[700px]:gap-3">
       <component
-        :is="action.to ? NuxtLink : 'div'"
+        :is="action.to ? NuxtLink : action.href ? 'a' : 'div'"
         v-for="action in actions"
         :key="action.label"
         :to="action.to"
+        :href="action.href"
+        :target="action.href ? '_blank' : undefined"
+        :rel="action.href ? 'noopener noreferrer' : undefined"
         class="relative flex aspect-[229/87] items-center justify-center focus-visible:z-30 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#1e3c2b]"
-        :aria-label="action.label"
+        :aria-label="action.ariaLabel || action.label"
       >
         <img :src="`${base}/${action.bg}`" alt="" aria-hidden="true" class="absolute inset-0 size-full">
         <img :src="`${base}/${action.plate}`" alt="" aria-hidden="true" class="absolute left-[7%] top-1/2 h-[70%] w-auto -translate-y-1/2">
