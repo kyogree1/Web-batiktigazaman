@@ -8,6 +8,14 @@ const base = '/design/date/5'
     aria-label="Informasi reservasi Batik Shaho"
   >
       <section id="terms" class="date-canvas relative aspect-[1440/1024] w-full overflow-hidden bg-[#edd4b8] text-[#111] max-[700px]:aspect-auto max-[700px]:min-h-[100svh]" aria-labelledby="terms-heading">
+        <NuxtLink
+          to="/mitra/batik-shaho"
+          aria-label="Kembali ke Batik Shaho"
+          class="absolute left-[3.5%] top-[4%] z-30 inline-flex items-center gap-2 rounded-full border border-[#1e3c2b]/30 bg-[#edd4b8]/90 px-[1.2vw] py-[0.65vw] text-[1.05vw] font-bold text-[#1e3c2b] shadow-sm transition hover:bg-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-[#cb4c08] max-[700px]:left-4 max-[700px]:top-4 max-[700px]:px-4 max-[700px]:py-2 max-[700px]:text-sm"
+        >
+          <span aria-hidden="true">←</span>
+          Kembali ke Batik Shaho
+        </NuxtLink>
         <img
           :src="`${base}/Vector-5.png`"
           alt=""
