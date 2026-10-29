@@ -9,6 +9,15 @@ const communityLogo = '/halaman%20pertama/logo.png'
     class="relative aspect-[1440/1024] w-full overflow-hidden bg-[#edd4b8] text-white max-[700px]:aspect-auto max-[700px]:min-h-[100svh]"
     aria-labelledby="maps-title"
   >
+    <NuxtLink
+      to="/mitra/batik-shaho"
+      aria-label="Kembali ke Batik Shaho"
+      class="absolute left-[3.5%] top-[4.5%] z-40 inline-flex items-center gap-[0.55vw] rounded-full bg-[#1e3c2b] px-[1.35vw] py-[0.65vw] text-[1.15vw] font-extrabold text-[#f7f1ef] shadow-[0_0.35vw_0.8vw_rgba(30,60,43,0.2)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#cb4c08] focus-visible:-translate-y-0.5 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#cb4c08] max-[700px]:left-4 max-[700px]:top-4 max-[700px]:gap-1.5 max-[700px]:px-3 max-[700px]:py-2 max-[700px]:text-sm"
+    >
+      <span aria-hidden="true" class="text-[1.35em] leading-none">←</span>
+      <span>Kembali</span>
+    </NuxtLink>
+
     <img
       :src="`${base}/detail%20kain%20batik%201.png`"
       alt=""
