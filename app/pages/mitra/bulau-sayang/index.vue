@@ -1,12 +1,37 @@
 <script setup lang="ts">
 const NuxtLink = resolveComponent('NuxtLink')
 const base = '/design/halaman_mitra_bulau_sayang/6'
+const btnIconBase = '/design/halaman_mitra_batik_shaho/1'
 
 const actions = [
-  { label: 'Maps', labelImage: 'Maps.png', labelLeft: '53%', labelWidth: '27%', icon: 'at-icons_location.png', iconLeft: '13.5%', iconWidth: '13.7%', iconHeight: '36%', iconFit: 'contain', plate: 'Ellipse 43.png', bg: 'Union.png', to: '/mitra/bulau-sayang-maps' },
-  { label: 'Contact', labelImage: 'Contact.png', labelLeft: '43%', labelWidth: '46%', icon: 'Vector-1.png', iconLeft: '14%', iconWidth: '12%', iconHeight: '32%', iconFit: 'fill', plate: 'Ellipse 44.png', bg: 'Union-3.png', href: 'https://wa.me/6281348747700', ariaLabel: 'Hubungi Batik Bulau Sayang melalui WhatsApp' },
-  { label: 'Motif', labelImage: 'Motif.png', labelLeft: '53%', labelWidth: '27%', icon: 'mdi_palette.png', iconLeft: '12.2%', iconWidth: '15.5%', iconHeight: '41.5%', iconFit: 'fill', plate: 'Ellipse 45.png', bg: 'Union-1.png', to: '/mitra/bulau-sayang-motif' },
-  { label: 'Date', labelImage: 'Date.png', labelLeft: '52%', labelWidth: '29%', icon: 'akar-icons_calendar.png', iconLeft: '14%', iconWidth: '12%', iconHeight: '32%', iconFit: 'fill', plate: 'Ellipse 46.png', bg: 'Union-2.png', to: '/mitra/bulau-sayang-date' },
+  {
+    label: 'Maps',
+    icon: 'at-icons_location.png',
+    bg: '#ff340c',
+    to: '/mitra/bulau-sayang/maps',
+    ariaLabel: 'Lihat lokasi Batik Bulau Sayang di Maps',
+  },
+  {
+    label: 'Contact',
+    icon: 'Vector.png',
+    bg: '#cbc308',
+    href: 'https://wa.me/6281348747700',
+    ariaLabel: 'Hubungi Batik Bulau Sayang melalui WhatsApp',
+  },
+  {
+    label: 'Motif',
+    icon: 'mdi_palette.png',
+    bg: '#f03272',
+    to: '/mitra/bulau-sayang/motif',
+    ariaLabel: 'Lihat koleksi motif Batik Bulau Sayang',
+  },
+  {
+    label: 'Date',
+    icon: 'akar-icons_calendar.png',
+    bg: '#9ab3eb',
+    to: '/mitra/bulau-sayang/date',
+    ariaLabel: 'Reservasi tanggal kunjungan Batik Bulau Sayang',
+  },
 ]
 </script>
 
@@ -66,24 +91,29 @@ const actions = [
       Batik Bulau Sayang berdiri sejak 2018 dari kepedulian terhadap warisan budaya suku Paser yang nyaris terlupakan. Batik ini menjadi bentuk pelestarian identitas dan sejarah masyarakat adat Paser di Kalimantan Timur. Namanya diambil dari minyak pengasih yang melegenda di kalangan suku Paser, yang dipercaya sebagai simbol kasih sayang, kelembutan, dan kekuatan doa turun-temurun. Dengan nama tersebut, setiap goresan batik diharapkan membawa kecintaan terhadap budaya dan alam sekitar.
     </p>
 
-    <div class="bulau-actions absolute left-[48.3%] top-[68.5%] z-20 grid w-[31.6%] grid-cols-2 gap-x-[3%] gap-y-[1.8vw] max-[700px]:static max-[700px]:mx-auto max-[700px]:mt-8 max-[700px]:w-[88%] max-[700px]:gap-3">
+    <!-- 4 Tombol Aksi Navigasi -->
+    <nav
+      class="bulau-actions absolute left-[48.33%] top-[68.55%] z-20 grid w-[31.53%] grid-cols-2 gap-x-[1.04vw] gap-y-[1.85vw] max-[700px]:static max-[700px]:mx-auto max-[700px]:mt-8 max-[700px]:w-full max-[700px]:max-w-sm max-[700px]:gap-4"
+      aria-label="Menu Aksi Mitra"
+    >
       <component
-        :is="action.to ? NuxtLink : action.href ? 'a' : 'div'"
+        :is="action.to ? NuxtLink : 'a'"
         v-for="action in actions"
         :key="action.label"
         :to="action.to"
         :href="action.href"
         :target="action.href ? '_blank' : undefined"
         :rel="action.href ? 'noopener noreferrer' : undefined"
-        class="relative flex aspect-[229/87] items-center justify-center focus-visible:z-30 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#1e3c2b]"
-        :aria-label="action.ariaLabel || action.label"
+        :aria-label="action.ariaLabel"
+        class="flex h-[5.42vw] items-center gap-[7%] rounded-full pl-[6%] pr-[5%] font-bold text-white shadow-md transition-transform hover:scale-[1.03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 max-[700px]:h-12 max-[700px]:gap-3 max-[700px]:px-4"
+        :style="{ backgroundColor: action.bg }"
       >
-        <img :src="`${base}/${action.bg}`" alt="" aria-hidden="true" class="absolute inset-0 size-full">
-        <img :src="`${base}/${action.plate}`" alt="" aria-hidden="true" class="absolute left-[7%] top-1/2 h-[70%] w-auto -translate-y-1/2">
-        <img :src="`${base}/${action.icon}`" :style="{ left: action.iconLeft, width: action.iconWidth, height: action.iconHeight }" alt="" aria-hidden="true" class="absolute top-1/2 -translate-y-1/2" :class="action.iconFit === 'contain' ? 'object-contain' : 'object-fill'">
-        <img :src="`${base}/${action.labelImage}`" :style="{ left: action.labelLeft, width: action.labelWidth }" alt="" aria-hidden="true" class="absolute top-1/2 -translate-y-1/2 object-contain">
+        <span class="grid aspect-square h-[72%] shrink-0 place-items-center rounded-full bg-white max-[700px]:h-8">
+          <img :src="`${btnIconBase}/${action.icon}`" alt="" class="w-[52%] object-contain">
+        </span>
+        <span class="flex-1 text-center text-[1.93vw] font-extrabold max-[700px]:text-base">{{ action.label }}</span>
       </component>
-    </div>
+    </nav>
   </main>
 </template>
 

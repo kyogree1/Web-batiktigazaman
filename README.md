@@ -24,11 +24,11 @@ Posisi, proporsi, warna, dan tipografi dibuat mendekati screenshot referensi.
 | 8. Detail Motif Batik | `/mitra/batik-shaho/motif-detail/[jenis]` | `app/pages/mitra/batik-shaho/motif-detail/[jenis].vue` | Selesai |
 | 9. Maps Batik Shaho | `/mitra/batik-shaho/maps` | `app/pages/mitra/batik-shaho/maps.vue` | Selesai |
 | 10. Reservasi Batik Shaho | `/mitra/batik-shaho/date` | `app/pages/mitra/batik-shaho/date.vue` | Selesai |
-| 11. Mitra: Batik Bulau Sayang | `/mitra/bulau-sayang` | `app/pages/mitra/bulau-sayang.vue` | Selesai |
-| 12. Jenis Motif Bulau Sayang | `/mitra/bulau-sayang-motif` | `app/pages/mitra/bulau-sayang-motif/index.vue` | Selesai |
-| 13. Detail Motif Bulau Sayang | `/mitra/bulau-sayang-motif/[jenis]` | `app/pages/mitra/bulau-sayang-motif/[jenis].vue` | Selesai |
-| 14. Maps Bulau Sayang | `/mitra/bulau-sayang-maps` | `app/pages/mitra/bulau-sayang-maps.vue` | Selesai |
-| 15. Reservasi Bulau Sayang | `/mitra/bulau-sayang-date` | `app/pages/mitra/bulau-sayang-date.vue` | Selesai |
+| 11. Mitra: Batik Bulau Sayang | `/mitra/bulau-sayang` | `app/pages/mitra/bulau-sayang/index.vue` | Selesai |
+| 12. Jenis Motif Bulau Sayang | `/mitra/bulau-sayang/motif` | `app/pages/mitra/bulau-sayang/motif/index.vue` | Selesai |
+| 13. Detail Motif Bulau Sayang | `/mitra/bulau-sayang/motif/[jenis]` | `app/pages/mitra/bulau-sayang/motif/[jenis].vue` | Selesai |
+| 14. Maps Bulau Sayang | `/mitra/bulau-sayang/maps` | `app/pages/mitra/bulau-sayang/maps.vue` | Selesai |
+| 15. Reservasi Bulau Sayang | `/mitra/bulau-sayang/date` | `app/pages/mitra/bulau-sayang/date.vue` | Selesai |
 
 Catatan:
 
@@ -39,7 +39,7 @@ Catatan:
 - `TestimonialSection.vue` sudah dipasang setelah `ProgramSection`.
 - Referensi komposit halaman kelima ada di `public/design/5.png`.
 - Asset individual halaman kelima berada di `public/halaman kelima/`.
-- Halaman mitra Batik Shaho (`/mitra/batik-shaho`) dibangun **murni dengan kode HTML/Tailwind dan aset individual** (`Mask group.png`, `Ellipse 41.png`, `Vector(1).png`, `1 (1) 1.png`), tanpa memakai gambar komposit `Frame 22.png`. Terdapat tombol navigasi native (Maps, Contact WhatsApp, Motif, Date) dan tombol `← Kembali ke Home`.
+- Halaman mitra Batik Shaho (`/mitra/batik-shaho`) dibangun **murni dengan kode HTML/Tailwind dan aset individual** (`Mask group.png`, `Ellipse 41.png`, `Vector(1).png`, `1 (1) 1.png`), dengan posisi ornamen presisi sesuai desain `Frame 22.png`. Terdapat tombol navigasi native (Maps, Contact WhatsApp, Motif, Date) dan tombol `← Kembali ke Home`.
 - Halaman Jenis Motif Batik (`/mitra/batik-shaho/motif`) dan Detail Motif (`/mitra/batik-shaho/motif-detail/[jenis].vue`) terhubung timbal-balik dengan tombol kembali konsisten.
 - Seluruh tombol kembali pada halaman mitra memakai palet tombol "More Info" Home (`bg-forest text-white shadow-lg hover:scale-[1.02] focus-visible:outline-forest`).
 - Halaman Maps (`/mitra/batik-shaho/maps`) dan halaman reservasi Batik Shaho
@@ -48,7 +48,7 @@ Catatan:
   atas ke bawah: ketentuan, pricelist, lalu reservasi.
 - Halaman mitra Batik Bulau Sayang (`/mitra/bulau-sayang`) memakai aset
   `public/design/halaman_mitra_bulau_sayang/6/`, dibangun native HTML/Tailwind
-  dengan tombol Maps, Contact WhatsApp, Motif, dan Date.
+  dengan 4 tombol aksi navigasi seragam persis Batik Shaho (pill `rounded-full` dengan badge lingkaran putih dan teks tebal).
 - Subhalaman Bulau Sayang memakai `public/design/jenis_motif_batik_bs/`
   (katalog motif), `public/design/motif_bs/` (detail motif), `public/design/maps_bs/`
   (maps), dan `public/design/date_bs/` (reservasi).
@@ -157,19 +157,20 @@ Jangan mengarahkan Root Directory ke `webfinal`; folder itu sudah tidak ada.
 │  ├─ pages/
 │  │  ├─ index.vue                 # urutan landing page 5 section
 │  │  └─ mitra/
-│  │     ├─ bulau-sayang.vue        # profil utama mitra Batik Bulau Sayang
-│  │     ├─ bulau-sayang-maps.vue   # peta lokasi Bulau Sayang
-│  │     ├─ bulau-sayang-date.vue   # ketentuan & reservasi Bulau Sayang
-│  │     ├─ bulau-sayang-motif/
-│  │     │  ├─ index.vue            # katalog jenis motif Bulau Sayang
-│  │     │  └─ [jenis].vue          # detail motif Bulau Sayang
-│  │     └─ batik-shaho/
-│  │        ├─ index.vue           # profil utama mitra Batik Shaho
-│  │        ├─ motif.vue           # katalog jenis motif
-│  │        ├─ maps.vue            # peta lokasi
-│  │        ├─ date.vue            # ketentuan & reservasi
-│  │        └─ motif-detail/
-│  │           └─ [jenis].vue      # detail motif batik
+│  │     ├─ batik-shaho/
+│  │     │  ├─ index.vue           # profil utama mitra Batik Shaho
+│  │     │  ├─ motif.vue           # katalog jenis motif
+│  │     │  ├─ maps.vue            # peta lokasi
+│  │     │  ├─ date.vue            # ketentuan & reservasi
+│  │     │  └─ motif-detail/
+│  │     │     └─ [jenis].vue      # detail motif batik
+│  │     └─ bulau-sayang/
+│  │        ├─ index.vue           # profil utama mitra Batik Bulau Sayang
+│  │        ├─ maps.vue            # peta lokasi Bulau Sayang
+│  │        ├─ date.vue            # ketentuan & reservasi Bulau Sayang
+│  │        └─ motif/
+│  │           ├─ index.vue        # katalog jenis motif Bulau Sayang
+│  │           └─ [jenis].vue      # detail motif Bulau Sayang
 │  └─ components/
 │     ├─ AppNavbar.vue             # navbar hero
 │     ├─ AboutDropdown.vue         # halaman 2
@@ -284,7 +285,7 @@ asset `public/design/Vector(3).png`, tetapi fungsi pencarian belum dihubungkan.
 | `public/halaman kelima/` | foto, blob, bintang, garis | `5.png` hanya referensi komposit |
 | `public/design/` | referensi komposit + ikon search | `Vector(3).png` dipakai navbar |
 | `public/design/halaman_mitra_batik_shaho/1/` | aset profil Batik Shaho | dipakai `pages/mitra/batik-shaho/index.vue` |
-| `public/design/halaman_mitra_bulau_sayang/6/` | aset profil Bulau Sayang | dipakai `pages/mitra/bulau-sayang.vue` |
+| `public/design/halaman_mitra_bulau_sayang/6/` | aset profil Bulau Sayang | dipakai `pages/mitra/bulau-sayang/index.vue` |
 | `public/design/jenis_motif_batik/2/` | katalog motif Batik Shaho | `Frame` hanya referensi |
 | `public/design/jenis_motif_batik_bs/` | katalog motif Bulau Sayang | `Frame 58.png` hanya referensi |
 | `public/design/motif_batik/3/` | detail motif Batik Shaho | dipakai `motif-detail/[jenis].vue` |
@@ -550,7 +551,7 @@ Offset bisa berubah jika ada section baru, margin, atau tinggi non-artboard.
 
 - [x] Implementasi halaman 5 Testimoni dari `public/design/5.png`.
       Asset individual sudah dipasang di `TestimonialSection.vue`.
-- [ ] Lengkapi anchor navbar: "Program" dan "Mitra Kami" masih `#home`.
+- [x] Lengkapi anchor navbar: "About us" (`#about`), "Program" (`#program`), "Mitra Kami" (`#about-detail`), dan "Home Page" (`#home`) dengan smooth scrolling.
 - [x] Pasang asset ikon search di navbar (`public/design/Vector(3).png`).
       Fungsi pencarian belum dihubungkan.
 - [ ] Rapikan komponen draft yang tidak dipakai (`AboutSection.vue`,

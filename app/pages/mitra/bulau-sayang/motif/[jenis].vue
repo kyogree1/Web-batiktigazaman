@@ -62,7 +62,7 @@ const motif = computed(() => motifs.find((item) => item.id === route.params.jeni
     </div>
 
     <NuxtLink
-      to="/mitra/bulau-sayang-motif"
+      to="/mitra/bulau-sayang/motif"
       aria-label="Kembali ke Jenis Motif"
       class="absolute left-[3.5%] top-[4%] z-20 inline-flex items-center gap-2 rounded-full bg-forest px-[1.2vw] py-[0.65vw] text-[1.05vw] font-bold text-white shadow-lg transition-transform hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest max-[700px]:fixed max-[700px]:left-4 max-[700px]:top-4 max-[700px]:px-4 max-[700px]:py-2 max-[700px]:text-sm"
     >

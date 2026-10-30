@@ -101,7 +101,7 @@ const motifs = [
     <NuxtLink
       v-for="motif in motifs"
       :key="motif.name"
-      :to="`/mitra/bulau-sayang-motif/${motif.id}`"
+      :to="`/mitra/bulau-sayang/motif/${motif.id}`"
       :aria-label="`Lihat ${motif.name}`"
       class="motif-card group absolute top-[23.1%] z-20 h-[38.2%] w-[21.4%] rounded-[3vw] outline-offset-4 focus-visible:outline focus-visible:outline-4 focus-visible:outline-forest"
       :style="{ left: motif.left }"

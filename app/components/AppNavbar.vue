@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const navigation = [
-  { label: 'Program', href: '#home' },
-  { label: 'Mitra Kami', href: '#home' },
+  { label: 'Program', href: '#program' },
+  { label: 'Mitra Kami', href: '#about-detail' },
   { label: 'Home Page', href: '#home' },
 ]
 </script>
@@ -14,7 +14,7 @@ const navigation = [
     >
       <div class="flex items-center gap-[3.3vw]">
         <a
-          href="#about-detail"
+          href="#about"
           class="transition-colors hover:text-white focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cream"
         >
           About us

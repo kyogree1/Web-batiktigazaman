@@ -54,19 +54,19 @@ const actions = [
       :src="`${base}/Ellipse%2041.png`"
       alt=""
       aria-hidden="true"
-      class="pointer-events-none absolute left-[-1.5%] top-0 w-[24.5%] max-w-none max-[700px]:w-[42%]"
+      class="pointer-events-none absolute left-[-14.31%] top-[-12.5%] w-[37.22%] max-w-none max-[700px]:left-[-20%] max-[700px]:top-[-8%] max-[700px]:w-[55%]"
     >
     <img
       :src="`${base}/Vector(1).png`"
       alt=""
       aria-hidden="true"
-      class="pointer-events-none absolute left-[77.24%] top-[-5.3%] w-[24.72%] max-w-none max-[700px]:left-auto max-[700px]:right-[-6%] max-[700px]:top-[-2%] max-[700px]:w-[35%]"
+      class="pointer-events-none absolute left-[77.5%] top-[-8.2%] w-[27.22%] max-w-none max-[700px]:left-auto max-[700px]:right-[-6%] max-[700px]:top-[-2%] max-[700px]:w-[35%]"
     >
     <img
       :src="`${base}/1%20(1)%201.png`"
       alt=""
       aria-hidden="true"
-      class="pointer-events-none absolute left-[81.5%] top-[66.55%] w-[25%] max-w-none max-[700px]:bottom-0 max-[700px]:left-auto max-[700px]:right-0 max-[700px]:top-auto max-[700px]:w-[38%] max-[700px]:opacity-40"
+      class="pointer-events-none absolute left-[81.53%] top-[66.02%] w-[30.07%] max-w-none max-[700px]:bottom-0 max-[700px]:left-auto max-[700px]:right-0 max-[700px]:top-auto max-[700px]:w-[38%] max-[700px]:opacity-40"
     >
 
     <!-- Bentuk Kuning dan Logo S Kiri -->
