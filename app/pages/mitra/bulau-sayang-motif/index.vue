@@ -3,6 +3,7 @@ const base = '/design/jenis_motif_batik_bs'
 
 const motifs = [
   {
+    id: 'ruang-walu',
     name: 'Motif Ruang Walu',
     image: 'Motif 2.1 1.png',
     titleImage: 'Motif Ruang Walu.png',
@@ -17,6 +18,7 @@ const motifs = [
     titleWidth: '50%',
   },
   {
+    id: 'sarumbolum',
     name: 'Motif Sarumbolum',
     image: 'Motif 1.1 1.png',
     titleImage: 'Motif Sarumbolum.png',
@@ -39,12 +41,12 @@ const motifs = [
     aria-labelledby="motif-page-title"
   >
     <NuxtLink
-      to="/"
-      aria-label="Kembali ke Home"
+      to="/mitra/bulau-sayang"
+      aria-label="Kembali ke Batik Bulau Sayang"
       class="absolute left-[3.5%] top-[4%] z-40 inline-flex items-center gap-2 rounded-full bg-forest px-[1.2vw] py-[0.65vw] text-[1.05vw] font-bold text-white shadow-lg transition-transform hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest max-[700px]:fixed max-[700px]:left-4 max-[700px]:top-4 max-[700px]:px-4 max-[700px]:py-2 max-[700px]:text-sm"
     >
       <span aria-hidden="true">←</span>
-      Kembali ke Home
+      Kembali
     </NuxtLink>
 
     <img
@@ -96,10 +98,12 @@ const motifs = [
       class="absolute left-[9.2%] top-[19.5%] z-20 w-[10.8%] max-w-none"
     >
 
-    <div
+    <NuxtLink
       v-for="motif in motifs"
       :key="motif.name"
-      class="motif-card absolute top-[23.1%] z-20 h-[38.2%] w-[21.4%]"
+      :to="`/mitra/bulau-sayang-motif/${motif.id}`"
+      :aria-label="`Lihat ${motif.name}`"
+      class="motif-card group absolute top-[23.1%] z-20 h-[38.2%] w-[21.4%] rounded-[3vw] outline-offset-4 focus-visible:outline focus-visible:outline-4 focus-visible:outline-forest"
       :style="{ left: motif.left }"
     >
       <img :src="`${base}/${motif.card}`" alt="" aria-hidden="true" class="absolute inset-0 size-full">
@@ -117,7 +121,7 @@ const motifs = [
         :style="{ left: motif.titleLeft, width: motif.titleWidth }"
         class="absolute top-[70.5%] z-10 max-w-none"
       >
-    </div>
+    </NuxtLink>
   </main>
 </template>
 

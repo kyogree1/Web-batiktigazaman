@@ -24,6 +24,11 @@ Posisi, proporsi, warna, dan tipografi dibuat mendekati screenshot referensi.
 | 8. Detail Motif Batik | `/mitra/batik-shaho/motif-detail/[jenis]` | `app/pages/mitra/batik-shaho/motif-detail/[jenis].vue` | Selesai |
 | 9. Maps Batik Shaho | `/mitra/batik-shaho/maps` | `app/pages/mitra/batik-shaho/maps.vue` | Selesai |
 | 10. Reservasi Batik Shaho | `/mitra/batik-shaho/date` | `app/pages/mitra/batik-shaho/date.vue` | Selesai |
+| 11. Mitra: Batik Bulau Sayang | `/mitra/bulau-sayang` | `app/pages/mitra/bulau-sayang.vue` | Selesai |
+| 12. Jenis Motif Bulau Sayang | `/mitra/bulau-sayang-motif` | `app/pages/mitra/bulau-sayang-motif/index.vue` | Selesai |
+| 13. Detail Motif Bulau Sayang | `/mitra/bulau-sayang-motif/[jenis]` | `app/pages/mitra/bulau-sayang-motif/[jenis].vue` | Selesai |
+| 14. Maps Bulau Sayang | `/mitra/bulau-sayang-maps` | `app/pages/mitra/bulau-sayang-maps.vue` | Selesai |
+| 15. Reservasi Bulau Sayang | `/mitra/bulau-sayang-date` | `app/pages/mitra/bulau-sayang-date.vue` | Selesai |
 
 Catatan:
 
@@ -41,6 +46,19 @@ Catatan:
   (`/mitra/batik-shaho/date`) memakai aset individual dari `public/design/maps/4/`
   dan `public/design/date/5/`. Halaman reservasi menumpuk tiga artboard dari
   atas ke bawah: ketentuan, pricelist, lalu reservasi.
+- Halaman mitra Batik Bulau Sayang (`/mitra/bulau-sayang`) memakai aset
+  `public/design/halaman_mitra_bulau_sayang/6/`, dibangun native HTML/Tailwind
+  dengan tombol Maps, Contact WhatsApp, Motif, dan Date.
+- Subhalaman Bulau Sayang memakai `public/design/jenis_motif_batik_bs/`
+  (katalog motif), `public/design/motif_bs/` (detail motif), `public/design/maps_bs/`
+  (maps), dan `public/design/date_bs/` (reservasi).
+- Detail motif Bulau Sayang mengikuti referensi `Frame 44.png` (Ruang Walu,
+  snowflake + lingkaran kuning) dan `Frame 42.png` (Sarumbolum, flower tanpa
+  lingkaran), dengan aset individual dari `motif_bs`.
+- Tombol kembali berjenjang: halaman mitra (`/mitra/batik-shaho`,
+  `/mitra/bulau-sayang`) → `/#about-detail` (bagian About Us di Home);
+  subhalaman maps/motif/date → halaman mitra masing-masing; detail motif →
+  katalog jenis motif. Tidak ada tombol langsung ke Home dari subhalaman.
 
 ---
 
@@ -139,6 +157,12 @@ Jangan mengarahkan Root Directory ke `webfinal`; folder itu sudah tidak ada.
 │  ├─ pages/
 │  │  ├─ index.vue                 # urutan landing page 5 section
 │  │  └─ mitra/
+│  │     ├─ bulau-sayang.vue        # profil utama mitra Batik Bulau Sayang
+│  │     ├─ bulau-sayang-maps.vue   # peta lokasi Bulau Sayang
+│  │     ├─ bulau-sayang-date.vue   # ketentuan & reservasi Bulau Sayang
+│  │     ├─ bulau-sayang-motif/
+│  │     │  ├─ index.vue            # katalog jenis motif Bulau Sayang
+│  │     │  └─ [jenis].vue          # detail motif Bulau Sayang
 │  │     └─ batik-shaho/
 │  │        ├─ index.vue           # profil utama mitra Batik Shaho
 │  │        ├─ motif.vue           # katalog jenis motif
@@ -162,6 +186,14 @@ Jangan mengarahkan Root Directory ke `webfinal`; folder itu sudah tidak ada.
 │  ├─ halaman keempat/             # asset halaman 4
 │  ├─ halaman kelima/              # asset individual halaman 5
 │  └─ design/                      # asset mitra, motif, maps, date
+│     ├─ halaman_mitra_batik_shaho/1/   # profil Batik Shaho
+│     ├─ halaman_mitra_bulau_sayang/6/  # profil Bulau Sayang
+│     ├─ jenis_motif_batik/2/      # katalog motif Batik Shaho
+│     ├─ jenis_motif_batik_bs/     # katalog motif Bulau Sayang
+│     ├─ motif_batik/3/            # detail motif Batik Shaho
+│     ├─ motif_bs/                 # detail motif Bulau Sayang (Frame 42 & 44)
+│     ├─ maps/4/, maps_bs/         # maps Batik Shaho / Bulau Sayang
+│     └─ date/5/, date_bs/         # reservasi Batik Shaho / Bulau Sayang
 ├─ tailwind.config.ts              # token warna & font
 ├─ nuxt.config.ts
 └─ package.json
@@ -251,6 +283,14 @@ asset `public/design/Vector(3).png`, tetapi fungsi pencarian belum dihubungkan.
 | `public/halaman keempat/` | wave, bunga, ellipse, ilustrasi | `4.png` hanya referensi |
 | `public/halaman kelima/` | foto, blob, bintang, garis | `5.png` hanya referensi komposit |
 | `public/design/` | referensi komposit + ikon search | `Vector(3).png` dipakai navbar |
+| `public/design/halaman_mitra_batik_shaho/1/` | aset profil Batik Shaho | dipakai `pages/mitra/batik-shaho/index.vue` |
+| `public/design/halaman_mitra_bulau_sayang/6/` | aset profil Bulau Sayang | dipakai `pages/mitra/bulau-sayang.vue` |
+| `public/design/jenis_motif_batik/2/` | katalog motif Batik Shaho | `Frame` hanya referensi |
+| `public/design/jenis_motif_batik_bs/` | katalog motif Bulau Sayang | `Frame 58.png` hanya referensi |
+| `public/design/motif_batik/3/` | detail motif Batik Shaho | dipakai `motif-detail/[jenis].vue` |
+| `public/design/motif_bs/` | detail motif Bulau Sayang | acuan `Frame 42.png` & `Frame 44.png` |
+| `public/design/maps/4/`, `public/design/maps_bs/` | maps Shaho / Bulau Sayang | aset individual |
+| `public/design/date/5/`, `public/design/date_bs/` | reservasi Shaho / Bulau Sayang | aset individual |
 
 **Jangan memakai file komposit** (`1.png`, `2.png`, `3.png`, `4.png`,
 `image.png`, atau `public/halaman kelima/5.png`) sebagai UI. File itu
@@ -495,9 +535,14 @@ Offset bisa berubah jika ada section baru, margin, atau tinggi non-artboard.
    dan native HTML/Tailwind.
 
 10. **Konsistensi tombol kembali**
-    Seluruh tombol kembali pada halaman mitra (`motif`, `maps`, `date`,
-    `motif-detail/[jenis]`, dan `index.vue`) diseragamkan memakai `NuxtLink`
-    dan palet tombol "More Info" Home (`bg-forest text-white shadow-lg hover:scale-[1.02]`).
+    Seluruh tombol kembali pada halaman mitra memakai `NuxtLink` dan palet
+    tombol "More Info" Home (`bg-forest text-white shadow-lg hover:scale-[1.02]`).
+    Tujuan tombol berjenjang:
+    - halaman mitra (`/mitra/batik-shaho`, `/mitra/bulau-sayang`) →
+      `/#about-detail` (bagian About Us, tanpa scroll dari atas);
+    - subhalaman maps/motif/date → halaman mitra masing-masing (label
+      `← Kembali`, bukan "Kembali ke Home");
+    - detail motif → katalog jenis motif.
 
 ---
 
