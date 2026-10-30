@@ -34,19 +34,19 @@ const programs = [
       src="/halaman%20keempat/Rectangle%2069%20-%20sambungan.png"
       alt=""
       aria-hidden="true"
-      class="absolute inset-x-0 top-0 z-0 block h-auto w-full"
+      class="program-wave absolute inset-x-0 top-0 z-0 block h-auto w-full"
     >
 
     <img
       src="/halaman%20keempat/Vector(2).png"
       alt=""
       aria-hidden="true"
-      class="absolute left-[-10%] top-[4.7%] z-10 w-[26%] max-w-none"
+      class="program-flower absolute left-[-10%] top-[4.7%] z-10 w-[26%] max-w-none pointer-events-none"
     >
 
     <h2
       id="program-title"
-      class="absolute left-[15%] top-[22.5%] z-10 w-[67%] text-center text-[clamp(2rem,4.9vw,4.4rem)] font-extrabold leading-none tracking-[-0.035em]"
+      class="program-title absolute left-[15%] top-[22.5%] z-10 w-[67%] text-center text-[clamp(2rem,4.9vw,4.4rem)] font-extrabold leading-none tracking-[-0.035em]"
     >
       What You Learn With Us!
     </h2>
@@ -76,61 +76,7 @@ const programs = [
 </template>
 
 <style scoped>
-@media (max-width: 700px) {
-  .program-section {
-    aspect-ratio: auto;
-    min-height: 74rem;
-    padding: 10rem 1rem 4rem;
-  }
-
-  .program-section > img:first-child {
-    height: 9rem;
-    width: 100%;
-  }
-
-  .program-section > img:nth-child(2) {
-    left: -5.5rem;
-    top: -1rem;
-    width: 9rem;
-  }
-
-  #program-title {
-    position: relative;
-    z-index: 20;
-    inset: auto;
-    width: 100%;
-    margin: 0 auto 2.5rem;
-    font-size: clamp(2rem, 10vw, 3rem);
-  }
-
-  .program-grid {
-    position: relative;
-    left: auto;
-    top: auto;
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    gap: 3rem;
-  }
-
-  .program-item-title {
-    margin-top: 1rem;
-    font-size: 1.15rem;
-  }
-
-  .program-item-copy {
-    max-width: 18rem;
-    margin-top: 0.75rem;
-    font-size: 0.9rem;
-  }
-
-  .program-visual {
-    width: min(19rem, 82vw);
-    margin-inline: auto;
-  }
-}
-
-
+/* Desktop artboard */
 .program-grid {
   display: grid;
   grid-template-columns: repeat(3, 30.7%);
@@ -155,23 +101,65 @@ const programs = [
   width: 105.7%;
 }
 
+/* Mobile responsive */
 @media (max-width: 700px) {
+  .program-section {
+    aspect-ratio: auto;
+    min-height: auto;
+    padding: 7.5rem 1.25rem 5rem;
+  }
+
+  .program-wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6rem;
+    width: 100%;
+    object-fit: fill;
+  }
+
+  .program-flower {
+    left: -3rem;
+    top: 1rem;
+    width: 7.5rem;
+  }
+
+  .program-title {
+    position: relative;
+    z-index: 20;
+    inset: auto;
+    width: 100%;
+    margin: 0 auto 3rem;
+    font-size: clamp(2rem, 8.5vw, 2.75rem);
+  }
+
   .program-grid {
+    position: relative;
+    left: auto;
+    top: auto;
     display: flex;
     grid-template-columns: none;
     flex-direction: column;
-    gap: 3rem;
+    width: 100%;
+    gap: 3.5rem;
+  }
+
+  .program-visual {
+    width: min(16.5rem, 78vw);
+    margin-inline: auto;
   }
 
   .program-item-title {
-    margin-top: 1rem;
+    margin-top: 1.25rem;
     font-size: 1.15rem;
   }
 
   .program-item-copy {
-    max-width: 18rem;
+    max-width: 20rem;
     margin-top: 0.75rem;
-    font-size: 0.9rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
   }
 }
 </style>

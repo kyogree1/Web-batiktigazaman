@@ -52,9 +52,8 @@ Catatan:
 - Subhalaman Bulau Sayang memakai `public/design/jenis_motif_batik_bs/`
   (katalog motif), `public/design/motif_bs/` (detail motif), `public/design/maps_bs/`
   (maps), dan `public/design/date_bs/` (reservasi).
-- Detail motif Bulau Sayang mengikuti referensi `Frame 44.png` (Ruang Walu,
-  snowflake + lingkaran kuning) dan `Frame 42.png` (Sarumbolum, flower tanpa
-  lingkaran), dengan aset individual dari `motif_bs`.
+- Detail motif Bulau Sayang mengikuti referensi `Frame 44.png` (Ruang Walu) dan `Frame 42.png` (Sarumbolum), dengan aset individual dari `motif_bs`.
+- Pada halaman detail motif (Batik Shaho dan Bulau Sayang), background putih (`Ellipse 38.png`) disetel `w-[48%] h-[78%]` pada posisi `left-[47.2%]` agar memberi jarak aman dari teks deskripsi. Nama motif ditiadakan pada desktop, dan hanya ditampilkan pada mobile di bagian bawah berlatar hijau (`#1e3c2b`) tepat di atas bulatan ornamen (`Ellipse 51.png`).
 - Tombol kembali berjenjang: halaman mitra (`/mitra/batik-shaho`,
   `/mitra/bulau-sayang`) → `/#about-detail` (bagian About Us di Home);
   subhalaman maps/motif/date → halaman mitra masing-masing; detail motif →
@@ -544,6 +543,10 @@ Offset bisa berubah jika ada section baru, margin, atau tinggi non-artboard.
     - subhalaman maps/motif/date → halaman mitra masing-masing (label
       `← Kembali`, bukan "Kembali ke Home");
     - detail motif → katalog jenis motif.
+
+11. **Tata Letak Halaman Detail Motif (Desktop vs Mobile)**
+    - **Desktop**: wadah background putih (`Ellipse 38.png`) disetel `w-[48%] h-[78%]` pada posisi `left-[47.2%] top-[10.5%]`, sehingga memberi jarak aman dari teks deskripsi di sebelah kiri (`w-[31.5%]`) dan tidak saling bertumpuk. Nama motif ditiadakan di desktop agar artboard bersih sesuai referensi desain.
+    - **Mobile**: nama motif ditampilkan khusus di mobile dengan teks putih tebal di dalam wadah bagian bawah berlatar hijau (`#1e3c2b`), tepat di atas bulatan ornamen (`Ellipse 51.png` + bunga anggrek asli di Shaho, dan bulatan kuning `Ellipse 51.png` di Bulau Sayang).
 
 ---
 

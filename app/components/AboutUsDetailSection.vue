@@ -27,7 +27,7 @@ const learningCards = [
     class="community-detail relative aspect-[1440/1024] w-full overflow-hidden bg-[#1e3c2b] text-cream"
     aria-labelledby="about-us-title"
   >
-    <picture aria-hidden="true" class="community-supergraphic absolute inset-y-0 left-0 z-10 block w-[9.8%]">
+    <picture aria-hidden="true" class="community-supergraphic absolute inset-y-0 left-0 z-10 block w-[9.8%] pointer-events-none">
       <source
         media="(max-width: 700px)"
         srcset="/halaman%20ketiga/Supergrafis%202%202(1).png"
@@ -39,24 +39,9 @@ const learningCards = [
       >
     </picture>
 
-    <component
-      :is="card.to ? NuxtLink : 'div'"
-      v-for="card in learningCards"
-      :key="card.image"
-      :to="card.to"
-      class="community-card absolute z-20 flex flex-col items-center border border-[#9f9b83] bg-[#435b4e] text-center text-[#edd4b8] transition-transform hover:scale-[1.01]"
-      :class="card.className"
-      :aria-label="card.to ? 'Lihat profil ' + card.alt : undefined"
-    >
-      <div class="community-card-logo grid place-items-center" :class="card.logoClass">
-        <img :src="card.image" :alt="card.alt" class="block size-full object-contain">
-      </div>
-      <p class="community-card-copy">{{ card.text }}</p>
-    </component>
-
     <h2
       id="about-us-title"
-      class="absolute right-[7.5%] top-[9.3%] z-20 text-[clamp(2.4rem,4.5vw,4.25rem)] font-extrabold leading-none text-[#dba658]"
+      class="community-title absolute right-[7.5%] top-[9.3%] z-20 text-[clamp(2.4rem,4.5vw,4.25rem)] font-extrabold leading-none text-[#dba658]"
     >
       About Us
     </h2>
@@ -67,87 +52,43 @@ const learningCards = [
       class="community-map absolute left-[32%] top-[-6%] z-10 w-[68%] max-w-none"
     >
 
-    <p class="absolute bottom-[30%] right-[7.5%] z-20 w-[45%] text-[clamp(0.8rem,1.25vw,1.15rem)] leading-[1.42] text-cream">
+    <p class="community-desc absolute bottom-[30%] right-[7.5%] z-20 w-[45%] text-[clamp(0.8rem,1.25vw,1.15rem)] leading-[1.42] text-cream">
       Komunitas Batik Tiga Zaman adalah ruang kolaborasi bagi pecinta, perajin, dan masyarakat untuk menjaga serta memperkenalkan batik sebagai warisan budaya yang relevan di setiap zaman. Beranggotakan enam gerai batik di Kalimantan Timur, komunitas ini memadukan nilai tradisional dan modern untuk menjadikan batik sebagai simbol identitas dan kebanggaan budaya Indonesia.
     </p>
+
+    <div class="community-cards-container">
+      <component
+        :is="card.to ? NuxtLink : 'div'"
+        v-for="card in learningCards"
+        :key="card.image"
+        :to="card.to"
+        class="community-card flex flex-col items-center border border-[#9f9b83] bg-[#435b4e] text-center text-[#edd4b8] transition-transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+        :class="card.className"
+        :aria-label="card.to ? 'Lihat profil ' + card.alt : undefined"
+      >
+        <div class="community-card-logo grid place-items-center" :class="card.logoClass">
+          <img :src="card.image" :alt="card.alt" class="block size-full object-contain">
+        </div>
+        <p class="community-card-copy">{{ card.text }}</p>
+      </component>
+    </div>
   </section>
 </template>
 
 <style scoped>
-@media (max-width: 700px) {
-  .community-detail {
-    aspect-ratio: auto;
-    min-height: 56rem;
-    padding: 5rem 1.25rem 4rem;
-  }
-
-  .community-supergraphic {
-    width: 2.5rem;
-  }
-
-  .community-card {
-    position: relative;
-    left: auto;
-    top: auto;
-    width: min(15rem, 68vw);
-    height: auto;
-    min-height: 19rem;
-    margin-inline: auto;
-    padding: 1.5rem 1rem 2rem;
-  }
-
-  .community-card--first {
-    margin-top: 1rem;
-  }
-
-  .community-card--second {
-    margin-top: 1.5rem;
-  }
-
-  .community-card-logo,
-  .community-card-logo--bs {
-    width: min(8rem, 42vw);
-  }
-
-  .community-card-copy {
-    margin-top: 1.25rem;
-    font-size: 0.85rem;
-  }
-
-  #about-us-title {
-    position: relative;
-    inset: auto;
-    margin: 2rem 0 1rem;
-    font-size: clamp(2.4rem, 11vw, 3.25rem);
-    text-align: center;
-  }
-
-  .community-map {
-    position: relative;
-    left: auto;
-    top: auto;
-    display: block;
-    width: min(33rem, 96vw);
-    margin: 2rem auto 0;
-  }
-
-  .community-detail > p {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    width: min(34rem, 90vw);
-    margin: 2rem auto 0;
-    font-size: 1rem;
-  }
-}
-
-
+/* Desktop artboard styles */
 .community-supergraphic {
   mask-image: linear-gradient(to bottom, #000 82%, transparent 99%);
   -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 99%);
 }
 
+.community-cards-container {
+  display: contents;
+}
+
 .community-card {
+  position: absolute;
+  z-index: 20;
   width: 17.3%;
   height: 48.5%;
   border-radius: 7rem;
@@ -167,13 +108,9 @@ const learningCards = [
 }
 
 .community-card-logo {
-  position: absolute;
-  left: 50%;
-  top: 8.4%;
   width: 78%;
   aspect-ratio: 1;
   flex: none;
-  transform: translateX(-50%);
 }
 
 .community-card-logo--s {
@@ -183,17 +120,12 @@ const learningCards = [
 }
 
 .community-card-logo--bs {
-  top: 3.2%;
   width: 98%;
   aspect-ratio: 239 / 292;
 }
 
 .community-card-copy {
-  position: absolute;
-  left: 10%;
-  top: 60%;
-  width: 80%;
-  margin: 0;
+  margin-top: clamp(1.5rem, 3.5vw, 3.25rem);
   font-size: clamp(0.8rem, 1.1vw, 1.1rem);
   line-height: 1.42;
 }
@@ -202,87 +134,88 @@ const learningCards = [
   height: auto;
 }
 
+/* Mobile responsive styles */
 @media (max-width: 700px) {
   .community-detail {
-    min-height: 56rem;
-    padding: 0;
+    aspect-ratio: auto;
+    min-height: auto;
+    padding: 4.5rem 1.25rem 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .community-supergraphic {
-    width: 3.5rem;
+    width: 2.5rem;
+    opacity: 0.8;
   }
 
-  .community-card {
-    position: absolute;
-    left: auto;
-    top: auto;
-    width: 40%;
-    height: 19.5rem;
-    min-height: 0;
-    margin: 0;
-    padding: 1.5rem 0.85rem 1.25rem;
-    border-radius: 4rem;
-  }
-
-  .community-card--first {
-    left: 20%;
-    top: 4.5rem;
-  }
-
-  .community-card--second {
-    left: 58%;
-    top: 19.25rem;
-    width: 39%;
-    height: 19.5rem;
-  }
-
-  .community-card-logo {
-    position: static;
-    width: 68%;
-    transform: none;
-  }
-
-  .community-card-logo--bs {
-    position: static;
-    top: auto;
-    width: 72%;
-    transform: none;
-  }
-
-  .community-card-copy {
-    position: static;
-    width: 100%;
-    margin-top: 1rem;
-    font-size: 0.75rem;
-    line-height: 1.35;
-  }
-
-  #about-us-title {
-    position: absolute;
-    left: 260%;
-    right: auto;
-    top: 7%;
-    margin: 0;
-    width: max-content;
+  .community-title {
+    position: relative;
+    inset: auto;
+    order: 1;
+    margin-bottom: 1.25rem;
+    font-size: clamp(2.2rem, 9vw, 3rem);
+    text-align: center;
   }
 
   .community-map {
-    position: absolute;
-    left: 79%;
-    top: 2rem;
+    position: relative;
+    left: auto;
+    top: auto;
+    order: 2;
     display: block;
-    width: 140%;
-    margin: 0;
+    width: min(24rem, 95vw);
+    height: auto;
+    margin: 0 auto 1.5rem;
   }
 
-  .community-detail > p {
-    position: absolute;
-    left: 260%;
+  .community-desc {
+    position: relative;
     right: auto;
     bottom: auto;
-    top: 35%;
-    width: 80%;
-    margin: 0;
+    order: 3;
+    width: min(24rem, 92vw);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    text-align: center;
+    margin: 0 auto 2.5rem;
+  }
+
+  .community-cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    order: 4;
+    position: relative;
+    z-index: 20;
+  }
+
+  .community-card {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: min(18rem, 85vw);
+    height: auto;
+    min-height: auto;
+    border-radius: 3rem;
+    padding: 2rem 1.25rem 1.75rem;
+  }
+
+  .community-card-logo {
+    width: 6.5rem;
+  }
+
+  .community-card-logo--bs {
+    width: 6.5rem;
+  }
+
+  .community-card-copy {
+    margin-top: 1.25rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
   }
 }
 </style>

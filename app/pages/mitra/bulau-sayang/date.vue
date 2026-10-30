@@ -20,8 +20,19 @@ const base = '/design/date_bs'
       <img :src="`${base}/Vector-1.png`" alt="" aria-hidden="true" class="absolute bottom-[-22%] right-[-8%] z-10 w-[27%] max-w-none">
 
       <h1 id="pricelist-heading" class="sr-only">Pricelist Booking</h1>
-      <img :src="`${base}/Rectangle%2095.png`" alt="" aria-hidden="true" class="absolute left-[21.5%] top-[11%] w-[57%] max-w-none">
-      <img :src="`${base}/Pricelist%20Booking.png`" alt="Pricelist Booking" class="absolute left-1/2 top-[13.5%] w-[38%] max-w-none -translate-x-1/2">
+      <div class="absolute left-[21.5%] top-[11%] flex w-[57%] items-center justify-center max-[700px]:left-1/2 max-[700px]:top-14 max-[700px]:w-[84%] max-[700px]:max-w-[340px] max-[700px]:-translate-x-1/2">
+        <img
+          :src="`${base}/Rectangle%2095.png`"
+          alt=""
+          aria-hidden="true"
+          class="h-auto w-full drop-shadow-md pointer-events-none"
+        >
+        <img
+          :src="`${base}/Pricelist%20Booking.png`"
+          alt="Pricelist Booking"
+          class="absolute left-1/2 top-1/2 h-auto max-h-[60%] max-w-[62%] -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow"
+        >
+      </div>
 
       <article class="absolute left-[6.25%] top-[36.9%] h-[38.2%] w-[27.2%] text-center text-[#173d2a] max-[700px]:left-[4%] max-[700px]:top-[33%] max-[700px]:h-[40%] max-[700px]:w-[29%]">
         <img :src="`${base}/Rectangle%2076.png`" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full">
