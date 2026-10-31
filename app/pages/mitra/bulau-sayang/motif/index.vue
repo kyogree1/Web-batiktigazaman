@@ -126,7 +126,12 @@ const motifs = [
           class="motif-card group absolute top-[23.1%] z-10 h-[38.2%] w-[21.4%] rounded-[3vw] outline-offset-4 focus-visible:outline focus-visible:outline-4 focus-visible:outline-forest"
           :style="{ left: motif.left }"
         >
-          <img :src="`${base}/${motif.card}`" alt="" aria-hidden="true" class="absolute inset-0 size-full">
+          <img
+            :src="`${base}/${motif.card}`"
+            alt=""
+            aria-hidden="true"
+            class="absolute inset-0 size-full transition-transform duration-200 group-hover:scale-[1.03] group-focus-visible:scale-[1.03]"
+          >
           <!-- Jepitan Animasi Polaroid -->
           <img
             :src="`${base}/${motif.marker}`"

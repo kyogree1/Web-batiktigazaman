@@ -316,9 +316,14 @@ const base = '/design/date/5'
       >
       <NuxtLink
         to="/mitra/batik-shaho"
-        class="absolute left-[56.5%] top-[48.1%] grid h-[20%] w-[35.2%] place-items-center rounded-full bg-forest px-[2%] text-center text-[clamp(0.85rem,1.8vw,1.6rem)] font-semibold text-white shadow-lg transition-transform hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest"
+        aria-label="Reserve!"
+        class="absolute left-[56.5%] top-[48.1%] grid h-[20%] w-[35.2%] place-items-center rounded-full bg-[#cb4c08] transition-transform hover:scale-[1.02] active:scale-[0.98]"
       >
-        Kembali ke Batik Shaho
+        <img
+          :src="`${base}/Reserve!.png`"
+          alt="Reserve!"
+          class="w-[39%] max-w-none"
+        >
       </NuxtLink>
     </section>
   </main>
