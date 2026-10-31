@@ -108,9 +108,13 @@ const learningCards = [
 }
 
 .community-card-logo {
+  position: absolute;
+  left: 50%;
+  top: 8.4%;
   width: 78%;
   aspect-ratio: 1;
   flex: none;
+  transform: translateX(-50%);
 }
 
 .community-card-logo--s {
@@ -120,12 +124,17 @@ const learningCards = [
 }
 
 .community-card-logo--bs {
+  top: 3.2%;
   width: 98%;
   aspect-ratio: 239 / 292;
 }
 
 .community-card-copy {
-  margin-top: clamp(1.5rem, 3.5vw, 3.25rem);
+  position: absolute;
+  left: 10%;
+  top: 60%;
+  width: 80%;
+  margin: 0;
   font-size: clamp(0.8rem, 1.1vw, 1.1rem);
   line-height: 1.42;
 }
@@ -205,14 +214,24 @@ const learningCards = [
   }
 
   .community-card-logo {
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none;
     width: 6.5rem;
   }
 
   .community-card-logo--bs {
+    position: static;
+    top: auto;
     width: 6.5rem;
   }
 
   .community-card-copy {
+    position: static;
+    left: auto;
+    top: auto;
+    width: 100%;
     margin-top: 1.25rem;
     font-size: 0.88rem;
     line-height: 1.5;
