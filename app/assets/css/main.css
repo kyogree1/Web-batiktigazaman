@@ -6,6 +6,38 @@
   src: url('/fonts/nunito-latin.woff2') format('woff2');
 }
 
+@font-face {
+  font-family: 'Buenard';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/buenard-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/poppins-300-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/poppins-400-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/poppins-700-latin.woff2') format('woff2');
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -29,4 +61,55 @@ body {
 button,
 a {
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Artboard Figma 1440: 1 * var(--u) = 1px pada desain. */
+@layer components {
+  .artboard {
+    --u: calc(100cqw / 1440);
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    overflow: hidden;
+    container-type: inline-size;
+  }
+
+  .layer {
+    position: absolute;
+    display: block;
+    left: calc(var(--x) * var(--u));
+    top: calc(var(--y) * var(--u));
+    width: calc(var(--w) * var(--u));
+    height: calc(var(--h) * var(--u));
+  }
+
+  .pill {
+    border-radius: 9999px;
+    background: linear-gradient(-2deg, #f0b9a4 3.9%, #5d270c 93.2%);
+    box-shadow: 3px 4px 10.3px rgb(0 0 0 / 72%), inset 2px 3px 4px rgb(255 255 255 / 25%);
+  }
+
+  a.pill {
+    transition: filter 150ms ease;
+  }
+
+  a.pill:hover {
+    filter: brightness(1.12);
+  }
+
+  /* Mobile: `flow` ikut alur halaman, `decor` disembunyikan. */
+  @media (max-width: 700px) {
+    .flow {
+      position: relative;
+      left: auto;
+      top: auto;
+      width: 100%;
+      height: auto;
+      max-width: 34rem;
+    }
+
+    .decor {
+      display: none;
+    }
+  }
 }

@@ -1,288 +1,147 @@
 <script setup lang="ts">
-const NuxtLink = resolveComponent('NuxtLink')
+const description = 'Melestarikan budaya Paser melalui seni batik yang autentik. Setiap motif mengandung cerita dan makna budaya lokal yang mendalam.'
 
-const learningCards = [
+const partners = [
   {
-    image: '/halaman%20ketiga/IMG_4822%201.png',
-    alt: 'Logo Batik Shaho',
-    text: 'Peserta dapat belajar membuat motif batik menggunakan teknik cap dengan mudah dan menyenangkan.',
-    className: 'community-card--first',
-    logoClass: 'community-card-logo--s',
+    name: 'Batik Shaho',
     to: '/mitra/batik-shaho',
+    card: 295,
+    title: [731, 376, 328],
+    copy: [735, 445],
+    button: [731, 543],
+    logo: 'logo-shaho-kartu',
+    logoBox: [393, 334, 289, 289],
+    round: true,
   },
   {
-    image: '/halaman%20ketiga/IMG_4819%203.png',
-    alt: 'Logo BS kegiatan batik',
-    text: 'Peserta dapat belajar membuat motif batik menggunakan teknik cap dengan mudah dan menyenangkan.',
-    className: 'community-card--second',
-    logoClass: 'community-card-logo--bs',
+    name: 'Bulau Sayang',
     to: '/mitra/bulau-sayang',
+    card: 743,
+    title: [402, 828, 328],
+    copy: [300, 899],
+    button: [452, 997],
+    logo: 'logo-bulau-sayang',
+    logoBox: [761, 719, 347, 424],
+    round: false,
   },
 ]
 </script>
 
 <template>
-  <section
-    id="about-detail"
-    class="community-detail relative aspect-[1440/1024] w-full overflow-hidden bg-[#1e3c2b] text-cream"
-    aria-labelledby="about-us-title"
-  >
-    <picture aria-hidden="true" class="community-supergraphic absolute inset-y-0 left-0 z-10 block w-[9.8%]">
-      <source
-        media="(max-width: 700px)"
-        srcset="/halaman%20ketiga/Supergrafis%202%202(1).png"
-      >
-      <img
-        src="/halaman%20ketiga/Supergrafis%202%202.png"
-        alt=""
-        class="block size-full object-fill"
-      >
-    </picture>
+  <section id="about-detail" class="partners artboard aspect-[1440/1280] bg-paper max-[700px]:aspect-auto" aria-labelledby="about-us-title">
+    <div class="layer decor bg-gradient-to-b from-cocoa to-rust" :style="place(0, 97, 1440, 1136)" aria-hidden="true" />
 
-    <component
-      :is="card.to ? NuxtLink : 'div'"
-      v-for="card in learningCards"
-      :key="card.image"
-      :to="card.to"
-      class="community-card absolute z-20 flex flex-col items-center border border-[#9f9b83] bg-[#435b4e] text-center text-[#edd4b8] transition-transform hover:scale-[1.01]"
-      :class="card.className"
-      :aria-label="card.to ? 'Lihat profil ' + card.alt : undefined"
-    >
-      <div class="community-card-logo grid place-items-center" :class="card.logoClass">
-        <img :src="card.image" :alt="card.alt" class="block size-full object-contain">
+    <h2 id="about-us-title" class="heading layer flow whitespace-nowrap font-buenard font-bold text-paper" :style="place(592, 149)">Mitra Kami</h2>
+
+    <article v-for="partner in partners" :key="partner.name" class="partner">
+      <div class="layer decor rounded-full bg-white/20" :style="place(156, partner.card, 1149, 368)" aria-hidden="true" />
+      <div
+        class="partner-logo layer flow"
+        :class="partner.round ? 'partner-logo--round overflow-hidden rounded-full bg-black' : ''"
+        :style="place(partner.logoBox[0]!, partner.logoBox[1]!, partner.logoBox[2], partner.logoBox[3])"
+      >
+        <img :src="asset(`umum/${partner.logo}.webp`)" :alt="`Logo ${partner.name}`" loading="lazy" class="size-full object-cover">
       </div>
-      <p class="community-card-copy">{{ card.text }}</p>
-    </component>
+      <h3
+        class="partner-name layer flow whitespace-nowrap font-buenard font-bold text-paper"
+        :class="{ 'text-right': !partner.round }"
+        :style="place(partner.title[0]!, partner.title[1]!, partner.title[2])"
+      >
+        {{ partner.name }}
+      </h3>
+      <p class="partner-copy layer flow text-justify font-poppins text-[#edd4b8]" :style="place(partner.copy[0]!, partner.copy[1]!, 430)">
+        {{ description }}
+      </p>
+      <NuxtLink :to="partner.to" class="partner-link pill layer flow text-center font-buenard font-bold text-white" :style="place(partner.button[0]!, partner.button[1]!, 279, 58)" :aria-label="`Lihat profil ${partner.name}`">
+        Open More
+      </NuxtLink>
+    </article>
 
-    <h2
-      id="about-us-title"
-      class="absolute right-[7.5%] top-[9.3%] z-20 text-[clamp(2.4rem,4.5vw,4.25rem)] font-extrabold leading-none text-[#dba658]"
-    >
-      About Us
-    </h2>
-
-    <img
-      src="/halaman%20ketiga/8_Motif%20senusantara%202.png"
-      alt="Peta Indonesia dengan motif batik Nusantara"
-      class="community-map absolute left-[32%] top-[-6%] z-10 w-[68%] max-w-none"
-    >
-
-    <p class="absolute bottom-[30%] right-[7.5%] z-20 w-[45%] text-[clamp(0.8rem,1.25vw,1.15rem)] leading-[1.42] text-cream">
-      Komunitas Batik Tiga Zaman adalah ruang kolaborasi bagi pecinta, perajin, dan masyarakat untuk menjaga serta memperkenalkan batik sebagai warisan budaya yang relevan di setiap zaman. Beranggotakan enam gerai batik di Kalimantan Timur, komunitas ini memadukan nilai tradisional dan modern untuk menjadikan batik sebagai simbol identitas dan kebanggaan budaya Indonesia.
-    </p>
+    <ArtImage :src="asset('umum/ornamen-horizontal.webp')" :box="[0, 118, 51.21, 1093.57]" :size="[1093.3, 44.04]" transform="rotate(90.38deg) scaleY(-1)" class="decor" />
+    <ArtImage :src="asset('umum/ornamen-horizontal.webp')" :box="[1389, 118, 51.21, 1093.57]" :size="[1093.3, 44.04]" transform="rotate(89.62deg)" class="decor" />
   </section>
 </template>
 
 <style scoped>
+.heading {
+  font-size: calc(64 * var(--u));
+  line-height: 1.23;
+}
+
+.partner {
+  display: contents;
+}
+
+.partner-logo--round {
+  box-shadow: 0 2px 3px rgb(255 255 255 / 45%);
+}
+
+.partner-name {
+  font-size: calc(48 * var(--u));
+  line-height: 1.23;
+}
+
+.partner-copy {
+  font-size: calc(18 * var(--u));
+  line-height: 1.5;
+}
+
+.partner-link {
+  font-size: calc(40 * var(--u));
+  line-height: calc(54 * var(--u));
+}
+
 @media (max-width: 700px) {
-  .community-detail {
-    aspect-ratio: auto;
-    min-height: 56rem;
-    padding: 5rem 1.25rem 4rem;
+  .partners {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 3rem 1rem;
+    background: linear-gradient(#261003, #8c3b0b);
   }
 
-  .community-supergraphic {
-    width: 2.5rem;
-  }
-
-  .community-card {
-    position: relative;
-    left: auto;
-    top: auto;
-    width: min(15rem, 68vw);
-    height: auto;
-    min-height: 19rem;
-    margin-inline: auto;
-    padding: 1.5rem 1rem 2rem;
-  }
-
-  .community-card--first {
-    margin-top: 1rem;
-  }
-
-  .community-card--second {
-    margin-top: 1.5rem;
-  }
-
-  .community-card-logo,
-  .community-card-logo--bs {
-    width: min(8rem, 42vw);
-  }
-
-  .community-card-copy {
-    margin-top: 1.25rem;
-    font-size: 0.85rem;
-  }
-
-  #about-us-title {
-    position: relative;
-    inset: auto;
-    margin: 2rem 0 1rem;
-    font-size: clamp(2.4rem, 11vw, 3.25rem);
+  .heading {
+    font-size: 2.5rem;
     text-align: center;
   }
 
-  .community-map {
-    position: relative;
-    left: auto;
-    top: auto;
-    display: block;
-    width: min(33rem, 96vw);
-    margin: 2rem auto 0;
-  }
-
-  .community-detail > p {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    width: min(34rem, 90vw);
-    margin: 2rem auto 0;
-    font-size: 1rem;
-  }
-}
-
-
-.community-supergraphic {
-  mask-image: linear-gradient(to bottom, #000 82%, transparent 99%);
-  -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 99%);
-}
-
-.community-card {
-  width: 17.3%;
-  height: 48.5%;
-  border-radius: 7rem;
-  padding: 3.2% 2% 2.8%;
-}
-
-.community-card--first {
-  left: 6.6%;
-  top: 7%;
-}
-
-.community-card--second {
-  left: 24%;
-  top: 45.8%;
-  width: 16.3%;
-  height: 45.7%;
-}
-
-.community-card-logo {
-  position: absolute;
-  left: 50%;
-  top: 8.4%;
-  width: 78%;
-  aspect-ratio: 1;
-  flex: none;
-  transform: translateX(-50%);
-}
-
-.community-card-logo--s {
-  overflow: hidden;
-  border-radius: 9999px;
-  background: #000;
-}
-
-.community-card-logo--bs {
-  top: 3.2%;
-  width: 98%;
-  aspect-ratio: 239 / 292;
-}
-
-.community-card-copy {
-  position: absolute;
-  left: 10%;
-  top: 60%;
-  width: 80%;
-  margin: 0;
-  font-size: clamp(0.8rem, 1.1vw, 1.1rem);
-  line-height: 1.42;
-}
-
-.community-map {
-  height: auto;
-}
-
-@media (max-width: 700px) {
-  .community-detail {
-    min-height: 56rem;
-    padding: 0;
-  }
-
-  .community-supergraphic {
-    width: 3.5rem;
-  }
-
-  .community-card {
-    position: absolute;
-    left: auto;
-    top: auto;
-    width: 40%;
-    height: 19.5rem;
-    min-height: 0;
-    margin: 0;
-    padding: 1.5rem 0.85rem 1.25rem;
-    border-radius: 4rem;
-  }
-
-  .community-card--first {
-    left: 20%;
-    top: 4.5rem;
-  }
-
-  .community-card--second {
-    left: 58%;
-    top: 19.25rem;
-    width: 39%;
-    height: 19.5rem;
-  }
-
-  .community-card-logo {
-    position: static;
-    width: 68%;
-    transform: none;
-  }
-
-  .community-card-logo--bs {
-    position: static;
-    top: auto;
-    width: 72%;
-    transform: none;
-  }
-
-  .community-card-copy {
-    position: static;
+  .partner {
+    display: flex;
     width: 100%;
-    margin-top: 1rem;
-    font-size: 0.75rem;
-    line-height: 1.35;
+    max-width: 30rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 2rem 1.5rem;
+    border-radius: 3rem;
+    background: rgb(255 255 255 / 20%);
   }
 
-  #about-us-title {
-    position: absolute;
-    left: 260%;
-    right: auto;
-    top: 7%;
-    margin: 0;
-    width: max-content;
+  .partner-logo {
+    width: 8.5rem;
+    height: 10.4rem;
   }
 
-  .community-map {
-    position: absolute;
-    left: 79%;
-    top: 2rem;
-    display: block;
-    width: 140%;
-    margin: 0;
+  .partner-logo--round {
+    height: 8.5rem;
   }
 
-  .community-detail > p {
-    position: absolute;
-    left: 260%;
-    right: auto;
-    bottom: auto;
-    top: 35%;
-    width: 80%;
-    margin: 0;
+  .partner-name {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .partner-copy {
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  .partner-link {
+    width: 12rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    line-height: 2.85rem;
   }
 }
 </style>

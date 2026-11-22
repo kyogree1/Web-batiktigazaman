@@ -3,175 +3,153 @@ const programs = [
   {
     title: 'Cap Batik',
     text: 'Peserta dapat belajar membuat motif batik menggunakan teknik cap dengan mudah dan menyenangkan.',
-    ellipse: '/halaman%20keempat/Ellipse%2026.png',
-    artwork: '/halaman%20keempat/Karya_Seni_Tanpa_Judul%203.png',
-    artworkClass: 'program-art--cap',
+    blob: 'blob-cap',
+    blobBox: [125, 281, 353, 328],
+    art: 'cap-batik',
+    artBox: [125, 327, 399, 282],
+    titleBox: [206, 675, 177],
+    textBox: [146, 731, 322],
   },
   {
-    title: 'Karya Bisa Dibawa Pulang',
+    title: 'Mencanting',
     text: 'Belajar teknik dasar mencanting dari nol, tanpa perlu pengalaman.',
-    ellipse: '/halaman%20keempat/Ellipse%2028.png',
-    artwork: '/halaman%20keempat/mencanting_20260814121541%201.png',
-    artworkClass: 'program-art--canting',
+    blob: 'blob-canting',
+    blobBox: [515, 281, 353, 328],
+    art: 'mencanting',
+    artBox: [571, 195, 242, 414],
+    titleBox: [512, 675, 380],
+    textBox: [548, 731, 307],
   },
   {
     title: 'Mewarnai',
     text: 'Peserta dapat berkreasi mewarnai kain batik sesuai dengan warna dan imajinasi masing-masing.',
-    ellipse: '/halaman%20keempat/Ellipse%2027.png',
-    artwork: '/halaman%20keempat/pallete%20campur%20warna_20260814121823%201.png',
-    artworkClass: 'program-art--color',
+    blob: 'blob-warna',
+    blobBox: [905, 252, 353, 328],
+    art: 'mewarnai',
+    artBox: [895, 281, 373, 373],
+    titleBox: [993, 678, 177],
+    textBox: [919, 731, 339],
   },
 ]
 </script>
 
 <template>
-  <section
-    id="program"
-    class="program-section relative aspect-[1440/1024] w-full overflow-hidden bg-[#edd4b8] text-[#1e3c2b]"
-    aria-labelledby="program-title"
-  >
-    <img
-      src="/halaman%20keempat/Rectangle%2069%20-%20sambungan.png"
-      alt=""
-      aria-hidden="true"
-      class="absolute inset-x-0 top-0 z-0 block h-auto w-full"
-    >
-
-    <img
-      src="/halaman%20keempat/Vector(2).png"
-      alt=""
-      aria-hidden="true"
-      class="absolute left-[-10%] top-[4.7%] z-10 w-[26%] max-w-none"
-    >
-
-    <h2
-      id="program-title"
-      class="absolute left-[15%] top-[22.5%] z-10 w-[67%] text-center text-[clamp(2rem,4.9vw,4.4rem)] font-extrabold leading-none tracking-[-0.035em]"
-    >
+  <section id="program" class="program-section artboard aspect-[1440/1024] max-[700px]:aspect-auto" aria-labelledby="program-title">
+    <ArtImage :src="asset('umum/ornamen-horizontal.webp')" :box="[0, 0, 1440, 58]" transform="scaleY(-1)" class="border-top" />
+    <h2 id="program-title" class="heading layer flow whitespace-nowrap text-right font-buenard font-bold text-paper" :style="place(252, 129, 821)">
       What You Learn With Us!
     </h2>
 
-    <div class="program-grid absolute left-[10.1%] top-[35.8%] z-10 w-[79.8%]">
-      <article v-for="program in programs" :key="program.title" class="program-item text-center">
-        <div class="program-visual relative aspect-[353/328] w-full">
-          <img :src="program.ellipse" alt="" aria-hidden="true" class="absolute inset-0 block size-full">
-          <img
-            :src="program.artwork"
-            alt=""
-            aria-hidden="true"
-            class="program-art absolute max-w-none"
-            :class="program.artworkClass"
-          >
-        </div>
+    <article v-for="program in programs" :key="program.title" class="program">
+      <div class="program-visual">
+        <ArtImage :src="asset(`beranda/${program.blob}.svg`)" :box="program.blobBox" class="program-blob" />
+        <ArtImage :src="asset(`beranda/${program.art}.webp`)" :box="program.artBox" class="program-art" :class="`program-art--${program.art}`" />
+      </div>
+      <h3 class="program-title layer flow whitespace-nowrap text-center font-poppins font-bold uppercase text-paper" :style="place(program.titleBox[0]!, program.titleBox[1]!, program.titleBox[2])">
+        {{ program.title }}
+      </h3>
+      <p class="program-copy layer flow text-center font-poppins text-paper" :style="place(program.textBox[0]!, program.textBox[1]!, program.textBox[2])">
+        {{ program.text }}
+      </p>
+    </article>
 
-        <h3 class="program-item-title mt-[clamp(1rem,3.8vw,3.5rem)] text-[clamp(0.9rem,1.9vw,1.7rem)] font-extrabold uppercase leading-[1.15]">
-          {{ program.title }}
-        </h3>
-        <p class="program-item-copy mx-auto mt-[clamp(0.75rem,1.8vw,1.6rem)] max-w-[92%] text-[clamp(0.75rem,1.3vw,1.15rem)] leading-[1.42]">
-          {{ program.text }}
-        </p>
-      </article>
-    </div>
+    <GoldLeaves :y="0" />
   </section>
 </template>
 
 <style scoped>
+.program-section {
+  background: linear-gradient(-88.48deg, #261003 1.57%, #8c3b0b 150.84%);
+}
+
+.heading {
+  font-size: calc(64 * var(--u));
+  line-height: 1.23;
+}
+
+.program,
+.program-visual {
+  display: contents;
+}
+
+.program-title {
+  font-size: calc(25 * var(--u));
+  line-height: 1.5;
+}
+
+.program-copy {
+  font-size: calc(18 * var(--u));
+  line-height: 1.5;
+}
+
 @media (max-width: 700px) {
   .program-section {
-    aspect-ratio: auto;
-    min-height: 74rem;
-    padding: 10rem 1rem 4rem;
-  }
-
-  .program-section > img:first-child {
-    height: 9rem;
-    width: 100%;
-  }
-
-  .program-section > img:nth-child(2) {
-    left: -5.5rem;
-    top: -1rem;
-    width: 9rem;
-  }
-
-  #program-title {
-    position: relative;
-    z-index: 20;
-    inset: auto;
-    width: 100%;
-    margin: 0 auto 2.5rem;
-    font-size: clamp(2rem, 10vw, 3rem);
-  }
-
-  .program-grid {
-    position: relative;
-    left: auto;
-    top: auto;
     display: flex;
-    width: 100%;
     flex-direction: column;
-    gap: 3rem;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 3.5rem 1.5rem 8rem;
   }
 
-  .program-item-title {
-    margin-top: 1rem;
-    font-size: 1.15rem;
+  .border-top {
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 1.75rem;
   }
 
-  .program-item-copy {
-    max-width: 18rem;
-    margin-top: 0.75rem;
-    font-size: 0.9rem;
+  .heading {
+    font-size: 2.4rem;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .program {
+    display: block;
+    width: 100%;
+    max-width: 20rem;
   }
 
   .program-visual {
-    width: min(19rem, 82vw);
-    margin-inline: auto;
-  }
-}
-
-
-.program-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 30.7%);
-  justify-content: space-between;
-}
-
-.program-art--cap {
-  left: 0;
-  top: 14.6%;
-  width: 113%;
-}
-
-.program-art--canting {
-  left: 19.3%;
-  top: -23.2%;
-  width: 68.6%;
-}
-
-.program-art--color {
-  left: 0;
-  top: 1.8%;
-  width: 105.7%;
-}
-
-@media (max-width: 700px) {
-  .program-grid {
-    display: flex;
-    grid-template-columns: none;
-    flex-direction: column;
-    gap: 3rem;
+    position: relative;
+    display: block;
+    width: 13rem;
+    height: 13rem;
+    margin: 0 auto 1rem;
   }
 
-  .program-item-title {
-    margin-top: 1rem;
-    font-size: 1.15rem;
+  .program-blob,
+  .program-art {
+    left: 0;
+    top: 0.5rem;
+    width: 100%;
+    height: 12rem;
   }
 
-  .program-item-copy {
-    max-width: 18rem;
-    margin-top: 0.75rem;
-    font-size: 0.9rem;
+  .program-art--cap-batik {
+    top: 2rem;
+    width: 14.3rem;
+    height: 10.1rem;
+  }
+
+  .program-art--mencanting {
+    left: 2.2rem;
+    top: -2.2rem;
+    width: 8.6rem;
+    height: 14.7rem;
+  }
+
+  .program-art--mewarnai {
+    height: 13rem;
+  }
+
+  .program-title {
+    font-size: 1.2rem;
+  }
+
+  .program-copy {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
   }
 }
 </style>

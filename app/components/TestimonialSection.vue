@@ -1,163 +1,179 @@
 <script setup lang="ts">
-const testimonial = 'Seru banget! Aku bisa bikin batik sendiri pakai cap. Awalnya agak takut karena lilinnya panas, tapi pengajarnya bantuin pelan-pelan. Aku juga paling suka pas mewarnai, warnanya bagus-bagus banget! Sekarang aku jadi bisa, hehe!'
+const testimonials = [
+  {
+    author: 'Siswa, SDN 011 Balai Kota',
+    text: 'Seru banget! Aku bisa bikin batik sendiri pakai cap. Awalnya agak takut karena lilinnya panas, tapi pengajarnya bantuin pelan-pelan. Aku juga paling suka pas mewarnai, warnanya bagus-bagus banget! Sekarang aku jadi bisa, hehe!',
+    authorY: 371,
+    textY: 433,
+    image: 'testimoni-balai-kota',
+    blob: [289.5, 136.4, 232.05, 193.07],
+    photo: [-0.27, -37.64, 241.4, 322.4],
+    crop: [-0.14, 0, 100.28, 100],
+  },
+  {
+    author: 'Siswa, SDN 038 Penajam',
+    text: 'Aku bangga banget sama hasil batikku! Dari belajar bikin batik sampai belajar mewarnai, semuanya jadi pengalaman yang nggak bakal aku lupain, hehe!',
+    authorY: 372,
+    textY: 433,
+    image: 'testimoni-penajam',
+    blob: [289.5, 136.7, 232.05, 193.62],
+    photo: [-0.5, -37.83, 255, 322],
+    crop: [0.04, 2.71, 94.93, 100.13],
+  },
+  {
+    author: 'INTIS SCHOOL BALIKPAPAN',
+    text: 'Dulu cuma lihat batik di baju, sekarang aku bisa bikin sendiri! Awalnya kirain susah, tapi kakaknya ngajarin pelan-pelan, jadi nggak takut salah. Belajar membatik dan mewarnai seru banget, apalagi pas warnanya mulai muncul di kain. Aku bangga sama hasilnya, hehe! Pengen ikut lagi!',
+    authorY: 353,
+    textY: 400,
+    image: 'testimoni-intis',
+    blob: [286, 134, 240.68, 199],
+    photo: [-37.19, -96.03, 315.41, 420.54],
+    crop: undefined,
+  },
+]
+
+const active = ref(0)
+const current = computed(() => testimonials[active.value]!)
+
+function move(step: number) {
+  active.value = (active.value + step + testimonials.length) % testimonials.length
+}
 </script>
 
 <template>
-  <section
-    id="testimonial"
-    class="testimonial-section relative aspect-[1440/1024] w-full overflow-hidden bg-[#edd4b8] text-[#1e3c2b]"
-    aria-labelledby="testimonial-title"
-  >
-    <span class="testimonial-label absolute left-[5.7%] top-[27.8%] z-20 flex h-[6.4%] w-[18.3%] items-center rounded-full bg-[#f7f1ef] px-[1.5%] text-[clamp(1rem,2.1vw,1.9rem)] font-extrabold text-[#cb4c08]">
-      Testimoni
-    </span>
+  <section id="testimonial" class="testimonial-section artboard aspect-[1440/1024] bg-paper max-[700px]:aspect-auto" aria-labelledby="testimonial-title">
+    <div class="band layer rounded-full bg-gradient-to-r from-rust from-[44.5%] to-cocoa" :style="place(0, -72, 1444, 160)" aria-hidden="true" />
 
-    <h2
-      id="testimonial-title"
-      class="absolute left-[5.7%] top-[35.4%] z-20 w-[42%] text-[clamp(2rem,3.35vw,3rem)] font-extrabold leading-[1.52] tracking-[-0.035em]"
-    >
-      See what our kids have<br class="testimonial-line-break"> to say
-    </h2>
+    <div v-for="side in [-233, 1111]" :key="side" class="side layer decor" :style="place(side, 304, 587, 587)" aria-hidden="true" />
+    <div v-for="side in [-31, 1313]" :key="`blob-${side}`" class="side-blob layer decor" :style="place(side, 383, 184, 152.81)" aria-hidden="true" />
 
-    <p class="absolute left-[5.7%] top-[49.2%] z-20 w-[41.5%] text-[clamp(0.9rem,1.55vw,1.4rem)] leading-[1.48]">
-      Seru banget! Aku bisa bikin batik sendiri pakai<br class="testimonial-line-break">
-      cap. Awalnya agak takut karena lilinnya panas,<br class="testimonial-line-break">
-      tapi pengajarnya bantuin pelan-pelan. Aku juga<br class="testimonial-line-break">
-      paling suka pas mewarnai, warnanya bagus-<br class="testimonial-line-break">
-      bagus banget! Sekarang aku jadi bisa, hehe!
-    </p>
+    <h2 id="testimonial-title" class="heading layer flow whitespace-nowrap font-buenard font-bold text-[#2f1403]" :style="place(563, 136)">Testimoni</h2>
 
-    <img
-      src="/halaman%20kelima/Line%209.png"
-      alt=""
-      aria-hidden="true"
-      class="absolute left-[55.8%] top-[28.7%] z-10 w-[26.3%]"
-    >
-    <img
-      src="/halaman%20kelima/Line%2010.png"
-      alt=""
-      aria-hidden="true"
-      class="absolute left-[58.4%] top-[27.7%] z-10 w-[19.2%]"
-    >
+    <GoldLeaves :x="18" :y="32" />
 
-    <img
-      src="/halaman%20kelima/Rectangle%2085.png"
-      alt=""
-      aria-hidden="true"
-      class="absolute left-[50%] top-[35.5%] z-10 w-[41.5%]"
-    >
-    <img
-      src="/halaman%20kelima/Mask%20group.png"
-      alt="Anak-anak mengikuti kegiatan membatik"
-      class="absolute left-[48.8%] top-[34.8%] z-20 w-[40.9%]"
-    >
+    <div class="slide layer flow" :style="place(347, 186, 722, 699)" aria-roledescription="carousel" aria-label="Testimoni peserta">
+      <ArtImage :src="asset('beranda/kartu-testimoni.svg')" :box="[29.5, 35.6, 717.74, 669.74]" class="decor" />
 
-    <img
-      src="/halaman%20kelima/kuning%20emas_20260814121731%201.png"
-      alt=""
-      aria-hidden="true"
-      class="absolute left-[84.2%] top-[13.2%] z-20 w-[10.5%]"
-    >
-    <img
-      src="/halaman%20kelima/kuning%20emas_20260814121731%201.png"
-      alt=""
-      aria-hidden="true"
-      class="absolute left-[47.5%] top-[67.7%] z-30 w-[10.5%]"
-    >
+      <div aria-live="polite">
+        <div class="blob layer flow overflow-hidden" :style="place(current.blob[0]!, current.blob[1]!, current.blob[2], current.blob[3])">
+          <ArtImage :key="current.image" :src="asset(`beranda/${current.image}.webp`)" :box="current.photo" :crop="current.crop" class="blob-photo" />
+        </div>
+        <p class="author layer flow whitespace-nowrap text-center font-poppins font-bold text-paper" :style="place(37, current.authorY, 697)">
+          {{ current.author }}
+        </p>
+        <p class="quote layer flow text-justify font-poppins text-paper" :style="place(90, current.textY, 591)">
+          {{ current.text }}
+        </p>
+      </div>
 
-    <button
-      type="button"
-      disabled
-      aria-label="Testimoni sebelumnya"
-      class="absolute left-[45.1%] top-[56.3%] z-30 grid size-[3.6%] min-h-10 min-w-10 place-items-center rounded-full bg-[#f7f1ef] text-[clamp(1.25rem,2.2vw,2rem)] leading-none text-[#1e3c2b] disabled:cursor-default"
-    >
-      <span aria-hidden="true">←</span>
-    </button>
-    <button
-      type="button"
-      disabled
-      aria-label="Testimoni berikutnya"
-      class="absolute left-[88%] top-[58.4%] z-30 grid size-[3.6%] min-h-10 min-w-10 place-items-center rounded-full bg-[#f7f1ef] text-[clamp(1.25rem,2.2vw,2rem)] leading-none text-[#1e3c2b] disabled:cursor-default"
-    >
-      <span aria-hidden="true">→</span>
-    </button>
+      <button type="button" class="arrow arrow--prev layer rounded-full" :style="place(309, 606, 50, 50)" aria-label="Testimoni sebelumnya" @click="move(-1)">
+        <img :src="asset('beranda/tombol-prev.svg')" alt="" class="absolute inset-0 size-full">
+        <img :src="asset('beranda/panah.svg')" alt="" class="relative mx-auto h-[29%] w-[66%] -scale-x-100">
+      </button>
+      <button type="button" class="arrow arrow--next layer rounded-full" :style="place(422, 606, 50, 50)" aria-label="Testimoni berikutnya" @click="move(1)">
+        <img :src="asset('beranda/tombol-next.svg')" alt="" class="absolute inset-0 size-full">
+        <img :src="asset('beranda/panah.svg')" alt="" class="relative mx-auto h-[29%] w-[66%]">
+      </button>
+    </div>
   </section>
 </template>
 
 <style scoped>
-@media (max-width: 700px) {
-  .testimonial-line-break {
-    display: none;
-  }
+.side {
+  border-radius: calc(50 * var(--u));
+  background: rgb(52 22 4 / 50%);
+}
+
+.side-blob {
+  background: rgb(0 0 0 / 28%);
+  mask: url('/design-baru/beranda/masker-samping.svg') center / 100% 100% no-repeat;
+}
+
+.heading {
+  font-size: calc(64 * var(--u));
+  line-height: 1.23;
+}
+
+.blob {
+  mask: url('/design-baru/beranda/masker-foto.svg') center / 100% 100% no-repeat;
+}
+
+.author,
+.quote {
+  font-size: calc(22 * var(--u));
+  line-height: 1.5;
+}
+
+.arrow:focus-visible {
+  outline: 2px solid #faead3;
+  outline-offset: 3px;
 }
 
 @media (max-width: 700px) {
   .testimonial-section {
-    aspect-ratio: auto;
-    min-height: 62rem;
-    padding: 5rem 1rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1rem 7rem;
   }
 
-  .testimonial-label,
-  #testimonial-title,
-  .testimonial-section > p {
-    position: relative;
-    inset: auto;
-    display: block;
-    width: min(22rem, 90vw);
+  .band {
+    top: -2rem;
+    width: 100%;
+    height: 3.5rem;
+  }
+
+  .heading {
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .slide {
+    z-index: 1;
+    padding: 1.5rem 1.25rem 5rem;
+    border-radius: 2rem;
+    background: linear-gradient(#f0b9a4, #5d270c);
+    box-shadow: 3px 4px 10px rgb(0 0 0 / 45%);
+  }
+
+  .blob {
+    width: 12rem;
+    height: 10rem;
     margin-inline: auto;
   }
 
-  .testimonial-label {
-    height: auto;
-    padding: 0.65rem 1.5rem;
-    text-align: center;
+  .blob-photo {
+    left: -10%;
+    top: -25%;
+    width: 120%;
+    height: 150%;
   }
 
-  #testimonial-title {
-    margin-top: 1.5rem;
-    font-size: clamp(2rem, 10vw, 3rem);
-    line-height: 1.1;
-    text-align: center;
+  .author {
+    margin-block: 1rem 0.75rem;
+    font-size: 0.95rem;
+    white-space: normal;
   }
 
-  .testimonial-section > p {
-    margin-top: 1.5rem;
-    font-size: 1rem;
-    text-align: center;
+  .quote {
+    font-size: 0.875rem;
+    text-align: left;
   }
 
-  .testimonial-section > img,
-  .testimonial-section > button {
-    position: relative;
-    inset: auto;
+  .arrow {
+    top: auto;
+    bottom: 1rem;
+    width: 2.9rem;
+    height: 2.9rem;
   }
 
-  .testimonial-section > img:nth-of-type(1),
-  .testimonial-section > img:nth-of-type(2),
-  .testimonial-section > img:nth-of-type(3),
-  .testimonial-section > img:nth-of-type(4),
-  .testimonial-section > img:nth-of-type(5) {
-    display: block;
-    width: min(22rem, 90vw);
-    margin: 2rem auto 0;
+  .arrow--prev {
+    left: calc(50% - 3.5rem);
   }
 
-  .testimonial-section > img:nth-of-type(3) {
-    margin-top: -1rem;
-  }
-
-  .testimonial-section > img:nth-of-type(4) {
-    margin-top: -21rem;
-  }
-
-  .testimonial-section > img:nth-of-type(5) {
-    width: 6rem;
-    margin: 1rem auto 0;
-  }
-
-  .testimonial-section > button {
-    display: none;
+  .arrow--next {
+    left: calc(50% + 0.6rem);
   }
 }
 </style>

@@ -12,53 +12,35 @@ Posisi, proporsi, warna, dan tipografi dibuat mendekati screenshot referensi.
 
 ## 1. Status pengerjaan
 
-| Halaman | Section / anchor | File | Status |
+UI mengikuti section **FIX WEBSITE** di Figma
+(`6JStio17HM4nrMpxTH9qRU`, node `438:87`).
+
+| Halaman | Section / route | File | Komponen |
 | --- | --- | --- | --- |
-| 1. Hero | `#home` | `app/pages/index.vue` | Selesai |
-| 2. About Us (dekoratif) | `#about` | `app/components/AboutDropdown.vue` | Selesai |
-| 3. About Us (detail + peta) | `#about-detail` | `app/components/AboutUsDetailSection.vue` | Selesai |
-| 4. What You Learn With Us | `#program` | `app/components/ProgramSection.vue` | Selesai |
-| 5. Testimoni | `#testimonial` | `app/components/TestimonialSection.vue` | Selesai |
-| 6. Mitra: Batik Shaho | `/mitra/batik-shaho` | `app/pages/mitra/batik-shaho/index.vue` | Selesai |
-| 7. Jenis Motif Batik | `/mitra/batik-shaho/motif` | `app/pages/mitra/batik-shaho/motif.vue` | Selesai |
-| 8. Detail Motif Batik | `/mitra/batik-shaho/motif-detail/[jenis]` | `app/pages/mitra/batik-shaho/motif-detail/[jenis].vue` | Selesai |
-| 9. Maps Batik Shaho | `/mitra/batik-shaho/maps` | `app/pages/mitra/batik-shaho/maps.vue` | Selesai |
-| 10. Reservasi Batik Shaho | `/mitra/batik-shaho/date` | `app/pages/mitra/batik-shaho/date.vue` | Selesai |
-| 11. Mitra: Batik Bulau Sayang | `/mitra/bulau-sayang` | `app/pages/mitra/bulau-sayang.vue` | Selesai |
-| 12. Jenis Motif Bulau Sayang | `/mitra/bulau-sayang-motif` | `app/pages/mitra/bulau-sayang-motif/index.vue` | Selesai |
-| 13. Detail Motif Bulau Sayang | `/mitra/bulau-sayang-motif/[jenis]` | `app/pages/mitra/bulau-sayang-motif/[jenis].vue` | Selesai |
-| 14. Maps Bulau Sayang | `/mitra/bulau-sayang-maps` | `app/pages/mitra/bulau-sayang-maps.vue` | Selesai |
-| 15. Reservasi Bulau Sayang | `/mitra/bulau-sayang-date` | `app/pages/mitra/bulau-sayang-date.vue` | Selesai |
+| Hero | `#home` | `app/pages/index.vue` | `AppNavbar` |
+| Profil komunitas + pemilik gerai | `#about` | `app/pages/index.vue` | `AboutDropdown` |
+| What You Learn With Us | `#program` | `app/pages/index.vue` | `ProgramSection` |
+| Testimoni (3 slide) | `#testimonial` | `app/pages/index.vue` | `TestimonialSection` |
+| Kartu mitra | `#about-detail` | `app/pages/index.vue` | `AboutUsDetailSection` |
+| Profil mitra | `/mitra/batik-shaho`, `/mitra/bulau-sayang` | route masing-masing | `MitraProfile` |
+| Jenis motif | `.../batik-shaho/motif`, `.../bulau-sayang-motif` | route masing-masing | `MitraMotifCatalog` |
+| Detail motif | `.../motif-detail/[jenis]`, `.../bulau-sayang-motif/[jenis]` | route masing-masing | `MitraMotifDetail` |
+| Maps | `.../batik-shaho/maps`, `.../bulau-sayang-maps` | route masing-masing | `MitraMaps` |
+| Reservasi | `.../batik-shaho/date`, `.../bulau-sayang-date` | route masing-masing | `MitraTerms`, `MitraPricelist`, `MitraReservation` |
+| Dokumentasi + QR | `.../batik-shaho/photo`, `.../bulau-sayang-photo` | route masing-masing | `MitraGallery` |
 
-Catatan:
+Cara mengubah UI:
 
-- Halaman 1–5 sudah tersusun berurutan di `app/pages/index.vue`
-  (`Hero → AboutDropdown → AboutUsDetailSection → ProgramSection → Testimonial`).
-- `AboutSection.vue` dan `IntroSection.vue` adalah komponen lama/draft yang
-  **belum dipakai**. Jangan hapus tanpa konfirmasi.
-- `TestimonialSection.vue` sudah dipasang setelah `ProgramSection`.
-- Referensi komposit halaman kelima ada di `public/design/5.png`.
-- Asset individual halaman kelima berada di `public/halaman kelima/`.
-- Halaman mitra Batik Shaho (`/mitra/batik-shaho`) dibangun **murni dengan kode HTML/Tailwind dan aset individual** (`Mask group.png`, `Ellipse 41.png`, `Vector(1).png`, `1 (1) 1.png`), tanpa memakai gambar komposit `Frame 22.png`. Terdapat tombol navigasi native (Maps, Contact WhatsApp, Motif, Date) dan tombol `← Kembali ke Home`.
-- Halaman Jenis Motif Batik (`/mitra/batik-shaho/motif`) dan Detail Motif (`/mitra/batik-shaho/motif-detail/[jenis].vue`) terhubung timbal-balik dengan tombol kembali konsisten.
-- Seluruh tombol kembali pada halaman mitra memakai palet tombol "More Info" Home (`bg-forest text-white shadow-lg hover:scale-[1.02] focus-visible:outline-forest`).
-- Halaman Maps (`/mitra/batik-shaho/maps`) dan halaman reservasi Batik Shaho
-  (`/mitra/batik-shaho/date`) memakai aset individual dari `public/design/maps/4/`
-  dan `public/design/date/5/`. Halaman reservasi menumpuk tiga artboard dari
-  atas ke bawah: ketentuan, pricelist, lalu reservasi.
-- Halaman mitra Batik Bulau Sayang (`/mitra/bulau-sayang`) memakai aset
-  `public/design/halaman_mitra_bulau_sayang/6/`, dibangun native HTML/Tailwind
-  dengan tombol Maps, Contact WhatsApp, Motif, dan Date.
-- Subhalaman Bulau Sayang memakai `public/design/jenis_motif_batik_bs/`
-  (katalog motif), `public/design/motif_bs/` (detail motif), `public/design/maps_bs/`
-  (maps), dan `public/design/date_bs/` (reservasi).
-- Detail motif Bulau Sayang mengikuti referensi `Frame 44.png` (Ruang Walu,
-  snowflake + lingkaran kuning) dan `Frame 42.png` (Sarumbolum, flower tanpa
-  lingkaran), dengan aset individual dari `motif_bs`.
-- Tombol kembali berjenjang: halaman mitra (`/mitra/batik-shaho`,
-  `/mitra/bulau-sayang`) → `/#about-detail` (bagian About Us di Home);
-  subhalaman maps/motif/date → halaman mitra masing-masing; detail motif →
-  katalog jenis motif. Tidak ada tombol langsung ke Home dari subhalaman.
+- Teks, harga, link, dan data tiap mitra ada di file halamannya. Tampilan bersama ada di komponen `Mitra*`.
+- Posisi memakai angka px dari Figma (lebar 1440): `:style="place(x, y, lebar, tinggi)"` dengan kelas `layer`,
+  di dalam elemen berkelas `artboard`. Ukuran font: `calc(22 * var(--u))` = 22 px di Figma.
+- Gambar diputar/di-crop memakai `<ArtImage :box :size :transform :crop />`.
+- Mobile (maks. 700 px): `flow` ikut alur halaman, `decor` disembunyikan, sisanya di `<style scoped>`.
+- Aset ada di `public/design-baru/`, font Buenard dan Poppins di `public/fonts/`.
+- Screenshot peta harus **dipotong di file-nya**, bukan hanya lewat CSS, agar tab/bookmark browser tidak ikut tayang.
+- `AboutSection.vue`, `IntroSection.vue`, dan `DecorativeFlower.vue` tidak dipakai. Jangan hapus tanpa konfirmasi.
+- Bagian 5, 6.2-6.4, 7, 11, dan offset di bagian 10 masih mendokumentasikan desain lama.
+  Jika berbeda, bagian 1 ini yang berlaku.
 
 ---
 
