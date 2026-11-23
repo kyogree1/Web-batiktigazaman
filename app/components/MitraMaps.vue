@@ -9,13 +9,13 @@ const props = defineProps<{
   instagram: { href: string, label: string }
 }>()
 
-const isShaho = props.variant === 'shaho'
+const isShaho = computed(() => props.variant === 'shaho')
 
-const contacts = [
-  { icon: 'ikon-web', href: props.website, label: props.website, x: isShaho ? 410 : 413 },
-  { icon: 'ikon-whatsapp', ...props.whatsapp, x: isShaho ? 669 : 701 },
-  { icon: 'ikon-instagram', ...props.instagram, x: isShaho ? 855 : 891 },
-]
+const contacts = computed(() => [
+  { icon: 'ikon-web', href: props.website, label: props.website, x: isShaho.value ? 410 : 413 },
+  { icon: 'ikon-whatsapp', ...props.whatsapp, x: isShaho.value ? 669 : 701 },
+  { icon: 'ikon-instagram', ...props.instagram, x: isShaho.value ? 855 : 891 },
+])
 </script>
 
 <template>

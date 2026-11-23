@@ -8,31 +8,39 @@ const props = defineProps<{
   links: { maps: string, contact: string, motif: string, date: string, photo: string }
 }>()
 
-const isShaho = props.variant === 'shaho'
-// Banner Bulau Sayang turun 58 px, barisan tombolnya turun 76 px.
-const [dx, dy] = isShaho ? [0, 0] : [3, 76]
+const isShaho = computed(() => props.variant === 'shaho')
 
-const actions = [
-  { label: 'Maps', to: props.links.maps, x: 171, y: 495, circle: [21, 9], icon: [40.5, 21.4, 19, 33.25], text: [98, 19] },
-  { label: 'Contact', href: props.links.contact, x: 399, y: 492, circle: [10.2, 10], icon: [21.2, 19.8, 36, 42.06], text: [78, 21] },
-  { label: 'Motif', to: props.links.motif, x: 625, y: 492, circle: [15.2, 9], icon: [20.2, 16, 44, 44], text: [93, 22] },
-  { label: 'Date', to: props.links.date, x: 853, y: 492, circle: [15.4, 9], icon: [24.7, 17.3, 39.33, 39.33], text: [95, 22] },
-  { label: 'Photo', to: props.links.photo, x: 1081, y: 491, circle: [14, 9], icon: [24, 23, 38, 31], text: [94, 22] },
-]
+/*
+ * Kedua mitra memakai tata letak Figma "Frame 143" (Galeri Bulau Sayang):
+ * strip krem 58 px di atas (tempat tombol kembali), banner 466 px, tombol aksi di bawah.
+ * Yang berbeda hanya logo: Shaho bulat hitam, Bulau Sayang oval.
+ */
+const logoBox = computed(() => (isShaho.value
+  // Logo Shaho 323 px, dipusatkan di area logo Bulau Sayang (946, 100, 373 x 455).
+  ? place(971, 166, 323, 323)
+  : place(946, 100, 373, 455)))
+
+const actions = computed(() => [
+  { label: 'Maps', to: props.links.maps, x: 174, y: 571, circle: [21, 9], icon: [40.5, 21.4, 19, 33.25], text: [98, 19] },
+  { label: 'Contact', href: props.links.contact, x: 402, y: 568, circle: [10.2, 10], icon: [21.2, 19.8, 36, 42.06], text: [78, 21] },
+  { label: 'Motif', to: props.links.motif, x: 628, y: 568, circle: [15.2, 9], icon: [20.2, 16, 44, 44], text: [93, 22] },
+  { label: 'Date', to: props.links.date, x: 856, y: 568, circle: [15.4, 9], icon: [24.7, 17.3, 39.33, 39.33], text: [95, 22] },
+  { label: 'Photo', to: props.links.photo, x: 1084, y: 567, circle: [14, 9], icon: [24, 23, 38, 31], text: [94, 22] },
+])
 </script>
 
 <template>
   <main class="relative min-h-[100svh] w-full bg-paper" aria-labelledby="mitra-title">
-    <MitraBackLink to="/#about-detail" label="Kembali ke Home" />
+    <MitraBackLink to="/#mitra" label="Kembali ke Home" class="profile-back" />
 
     <div class="profile artboard aspect-[1440/716] max-[700px]:aspect-auto">
-      <div class="band layer" :style="isShaho ? place(-2, 0, 1440, 466) : place(0, 58, 1440, 466)" aria-hidden="true" />
-      <ArtImage :src="asset('umum/ornamen-horizontal.webp')" :box="[-2, isShaho ? 11 : 58, 1442.62, 58.11]" transform="rotate(180deg)" class="ornament" />
+      <div class="band layer" :style="place(0, 58, 1440, 466)" aria-hidden="true" />
+      <ArtImage :src="asset('umum/ornamen-horizontal.webp')" :box="[-2, 58, 1442.62, 58.11]" transform="rotate(180deg)" class="ornament" />
 
-      <h1 id="mitra-title" class="title layer flow whitespace-nowrap font-buenard font-bold text-paper" :style="isShaho ? place(93, 66) : place(91, 100)">{{ name }}</h1>
-      <p class="description layer flow text-justify font-poppins text-paper" :style="isShaho ? place(93, 187, 750) : place(91, 219, 750)">{{ description }}</p>
+      <h1 id="mitra-title" class="title layer flow whitespace-nowrap font-buenard font-bold text-paper" :style="place(91, 100)">{{ name }}</h1>
+      <p class="description layer flow text-justify font-poppins text-paper" :style="place(91, 219, 750)">{{ description }}</p>
 
-      <div class="logo layer flow" :class="{ 'logo--round overflow-hidden rounded-full bg-black': isShaho }" :style="isShaho ? place(1017, 94, 323, 323) : place(946, 100, 373, 455)">
+      <div class="logo layer flow" :class="{ 'logo--round overflow-hidden rounded-full bg-black': isShaho }" :style="logoBox">
         <img :src="asset(isShaho ? 'umum/logo-shaho.webp' : 'umum/logo-bulau-sayang.webp')" :alt="`Logo ${name}`" class="size-full object-cover">
       </div>
 
@@ -47,7 +55,7 @@ const actions = [
           :rel="action.href ? 'noopener noreferrer' : undefined"
           :aria-label="action.href ? `Hubungi ${name} melalui WhatsApp` : action.label"
           class="action pill layer"
-          :style="place(action.x + dx!, action.y + dy!, 184, 76)"
+          :style="place(action.x, action.y, 184, 76)"
         >
           <ArtImage :src="asset('umum/lingkaran.svg')" :box="[...action.circle, 58, 58]" class="action-circle" eager />
           <ArtImage :src="asset(`umum/ikon-${action.label.toLowerCase()}.svg`)" :box="action.icon" class="action-icon" :class="`action-icon--${action.label.toLowerCase()}`" eager />
@@ -59,6 +67,14 @@ const actions = [
 </template>
 
 <style scoped>
+/* Tombol kembali di tengah strip krem 58 px, rata kiri dengan judul (x 91). */
+@media (min-width: 701px) {
+  a.profile-back {
+    left: calc(91 / 1440 * 100%);
+    top: calc(9 / 1440 * 100vw);
+  }
+}
+
 .band {
   background: linear-gradient(#261003 6%, #8c3b0b 96%);
   box-shadow: 3px 4px 10.3px rgb(0 0 0 / 72%);

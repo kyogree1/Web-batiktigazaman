@@ -4,6 +4,8 @@ const prices = [
   { type: 'Media', size: '40 x 40 cm', price: 'Rp 50.000' },
   { type: 'Media', size: '50 x 50 cm', price: 'Rp 60.000' },
 ]
+
+useSeoMeta({ title: `Reservasi ${mitra.shaho.name}` })
 </script>
 
 <template>
@@ -11,6 +13,6 @@ const prices = [
     <MitraBackLink to="/mitra/batik-shaho" aria-label="Kembali ke Batik Shaho" />
     <MitraTerms />
     <MitraPricelist :cards="prices" />
-    <MitraReservation variant="shaho" whatsapp="https://wa.me/6281346241922" />
+    <MitraReservation variant="shaho" :form-url="mitra.shaho.reservasi.form" :jadwal-url="mitra.shaho.reservasi.jadwal" />
   </main>
 </template>

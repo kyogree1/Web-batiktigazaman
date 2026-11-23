@@ -1,14 +1,17 @@
 <script setup lang="ts">
 const props = defineProps<{
   variant: 'shaho' | 'bulau-sayang'
-  whatsapp: string
+  /** Google Form reservasi. */
+  formUrl: string
+  /** Google Sheets jadwal reservasi. */
+  jadwalUrl: string
 }>()
 
-const isShaho = props.variant === 'shaho'
-const height = isShaho ? 939 : 1024
+const isShaho = computed(() => props.variant === 'shaho')
+const height = computed(() => (isShaho.value ? 939 : 1024))
 // Di Figma, 109 px teratas frame Bulau Sayang tertutup section pricelist.
-const visible = isShaho ? height : height - 109
-const top = isShaho ? 0 : -109
+const visible = computed(() => (isShaho.value ? height.value : height.value - 109))
+const top = computed(() => (isShaho.value ? 0 : -109))
 </script>
 
 <template>
@@ -32,10 +35,10 @@ const top = isShaho ? 0 : -109
       <h2 id="reserve-heading" class="title layer flow text-center font-buenard font-bold text-[#6c361b]" :style="place(807, 277, 548)">
         {{ isShaho ? 'Ayok' : 'Ayo' }} Reservasi<br>Segera !
       </h2>
-      <a :href="whatsapp" target="_blank" rel="noopener noreferrer" class="reserve pill layer flow text-center font-buenard text-white" :style="place(827, 492, 507, 199)">
+      <a :href="formUrl" target="_blank" rel="noopener noreferrer" class="reserve pill layer flow text-center font-buenard text-white" :style="place(827, 492, 507, 199)">
         {{ isShaho ? 'Reservasi!' : 'Reservasi' }}
       </a>
-      <a :href="whatsapp" target="_blank" rel="noopener noreferrer" class="schedule pill layer flow text-center font-buenard text-white" :style="place(948, 744, 279, 58)">
+      <a :href="jadwalUrl" target="_blank" rel="noopener noreferrer" class="schedule pill layer flow text-center font-buenard text-white" :style="place(948, 744, 279, 58)">
         Cek Jadwal
       </a>
     </div>

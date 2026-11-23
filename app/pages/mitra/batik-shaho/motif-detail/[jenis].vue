@@ -32,7 +32,9 @@ const motifs = [
     description: 'Motif Ekor Enggang terinspirasi dari susunan bulu ekor burung Enggang, satwa yang istimewa dalam budaya masyarakat Dayak di Kalimantan. Bulu yang tersusun simetris menggambarkan keseimbangan dan persatuan, sedangkan lengkungannya melambangkan perjalanan hidup yang terus berkembang. Garis geometrisnya mencerminkan keteguhan dan keberanian menjaga identitas budaya. Sebagai simbol kehormatan dan kebijaksanaan, motif ini membawa pesan untuk senantiasa menjaga alam.',
   },
 ]
-const selectedMotif = computed(() => motifs.find((motif) => motif.id === route.params.jenis) ?? motifs[1]!)
+const selectedMotif = computed(() => findMotifOr404(motifs, route.params.jenis))
+
+useSeoMeta({ title: () => selectedMotif.value.title.join(' ') })
 </script>
 
 <template>

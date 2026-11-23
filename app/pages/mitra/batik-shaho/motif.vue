@@ -4,6 +4,8 @@ const cards = [
   { id: 'anggrek', title: 'Motif Anggrek Hitam Kecil', image: 'anggrek', card: [600, 236], clip: [732, 176], art: [648, 254, 204, 289], label: [632, 510, 235] },
   { id: 'enggang', title: 'Motif Ekor Enggang', image: 'enggang', card: [991, 207], clip: [1123, 131], art: [1030, 218, 222, 314], label: [1040, 487, 202] },
 ]
+
+useSeoMeta({ title: `Jenis Motif ${mitra.shaho.name}` })
 </script>
 
 <template>

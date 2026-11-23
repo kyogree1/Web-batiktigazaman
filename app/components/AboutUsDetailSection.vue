@@ -28,7 +28,7 @@ const partners = [
 </script>
 
 <template>
-  <section id="about-detail" class="partners artboard aspect-[1440/1280] bg-paper max-[700px]:aspect-auto" aria-labelledby="about-us-title">
+  <section id="mitra" class="partners artboard aspect-[1440/1280] bg-paper max-[700px]:aspect-auto" aria-labelledby="about-us-title">
     <div class="layer decor bg-gradient-to-b from-cocoa to-rust" :style="place(0, 97, 1440, 1136)" aria-hidden="true" />
 
     <h2 id="about-us-title" class="heading layer flow whitespace-nowrap font-buenard font-bold text-paper" :style="place(592, 149)">Mitra Kami</h2>

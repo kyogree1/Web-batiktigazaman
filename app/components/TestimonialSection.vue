@@ -34,14 +34,17 @@ const testimonials = [
 
 const active = ref(0)
 const current = computed(() => testimonials[active.value]!)
+/** Arah geser slide: 1 = berikutnya, -1 = sebelumnya. */
+const direction = ref<1 | -1>(1)
 
-function move(step: number) {
+function move(step: 1 | -1) {
+  direction.value = step
   active.value = (active.value + step + testimonials.length) % testimonials.length
 }
 </script>
 
 <template>
-  <section id="testimonial" class="testimonial-section artboard aspect-[1440/1024] bg-paper max-[700px]:aspect-auto" aria-labelledby="testimonial-title">
+  <section id="testimoni" class="testimonial-section artboard aspect-[1440/1024] bg-paper max-[700px]:aspect-auto" aria-labelledby="testimonial-title">
     <div class="band layer rounded-full bg-gradient-to-r from-rust from-[44.5%] to-cocoa" :style="place(0, -72, 1444, 160)" aria-hidden="true" />
 
     <div v-for="side in [-233, 1111]" :key="side" class="side layer decor" :style="place(side, 304, 587, 587)" aria-hidden="true" />
@@ -51,19 +54,24 @@ function move(step: number) {
 
     <GoldLeaves :x="18" :y="32" />
 
-    <div class="slide layer flow" :style="place(347, 186, 722, 699)" aria-roledescription="carousel" aria-label="Testimoni peserta">
+    <div class="slide layer flow" :style="place(347, 186, 722, 699)" role="region" aria-roledescription="carousel" aria-label="Testimoni peserta">
       <ArtImage :src="asset('beranda/kartu-testimoni.svg')" :box="[29.5, 35.6, 717.74, 669.74]" class="decor" />
 
-      <div aria-live="polite">
-        <div class="blob layer flow overflow-hidden" :style="place(current.blob[0]!, current.blob[1]!, current.blob[2], current.blob[3])">
-          <ArtImage :key="current.image" :src="asset(`beranda/${current.image}.webp`)" :box="current.photo" :crop="current.crop" class="blob-photo" />
-        </div>
-        <p class="author layer flow whitespace-nowrap text-center font-poppins font-bold text-paper" :style="place(37, current.authorY, 697)">
-          {{ current.author }}
-        </p>
-        <p class="quote layer flow text-justify font-poppins text-paper" :style="place(90, current.textY, 591)">
-          {{ current.text }}
-        </p>
+      <div aria-live="polite" aria-atomic="true">
+        <p class="sr-only">Testimoni {{ active + 1 }} dari {{ testimonials.length }}</p>
+        <Transition :name="direction === 1 ? 'slide-next' : 'slide-prev'" mode="out-in">
+          <div :key="active">
+            <div class="blob layer flow overflow-hidden" :style="place(current.blob[0]!, current.blob[1]!, current.blob[2], current.blob[3])">
+              <ArtImage :src="asset(`beranda/${current.image}.webp`)" :box="current.photo" :crop="current.crop" class="blob-photo" />
+            </div>
+            <p class="author layer flow whitespace-nowrap text-center font-poppins font-bold text-paper" :style="place(37, current.authorY, 697)">
+              {{ current.author }}
+            </p>
+            <p class="quote layer flow text-justify font-poppins text-paper" :style="place(90, current.textY, 591)">
+              {{ current.text }}
+            </p>
+          </div>
+        </Transition>
       </div>
 
       <button type="button" class="arrow arrow--prev layer rounded-full" :style="place(309, 606, 50, 50)" aria-label="Testimoni sebelumnya" @click="move(-1)">
@@ -107,6 +115,46 @@ function move(step: number) {
 .arrow:focus-visible {
   outline: 2px solid #faead3;
   outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Slide berganti: keluar ke satu sisi, masuk dari sisi lain. */
+  .slide-next-enter-active,
+  .slide-next-leave-active,
+  .slide-prev-enter-active,
+  .slide-prev-leave-active {
+    transition: opacity 300ms var(--ease-out), transform 300ms var(--ease-out);
+  }
+
+  .slide-next-enter-from,
+  .slide-prev-leave-to {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  .slide-next-leave-to,
+  .slide-prev-enter-from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+
+  .arrow {
+    transition: transform 180ms var(--ease-out);
+  }
+
+  .arrow:active {
+    transform: scale(0.96);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .arrow:hover {
+    transform: scale(1.06);
+  }
+
+  .arrow:active {
+    transform: scale(0.96);
+  }
 }
 
 @media (max-width: 700px) {

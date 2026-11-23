@@ -26,7 +26,7 @@ defineProps<{
         :key="item.id"
         :to="`${detailBase}/${item.id}`"
         :aria-label="`Lihat ${item.title}`"
-        class="card layer flow bg-[#f5f5f5] hover:brightness-95 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-forest"
+        class="card layer flow bg-[#f5f5f5] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-forest"
         :style="place(item.card[0]!, item.card[1]!, 300, 383)"
       >
         <ArtImage :src="asset(`motif/${item.image}.webp`)" :box="[item.art[0]! - item.card[0]!, item.art[1]! - item.card[1]!, item.art[2]!, item.art[3]!]" class="card-art" eager />
@@ -52,6 +52,21 @@ defineProps<{
 .card {
   border-radius: calc(49 * var(--u));
   box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  }
+}
+
+/* Kartu terangkat seperti kain yang dijepit tertiup angin. */
+@media (hover: hover) {
+  .card:hover,
+  .card:focus-visible {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 16px rgb(0 0 0 / 28%);
+  }
 }
 
 .card-title {

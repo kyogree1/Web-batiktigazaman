@@ -20,25 +20,29 @@ UI mengikuti section **FIX WEBSITE** di Figma
 | Hero | `#home` | `app/pages/index.vue` | `AppNavbar` |
 | Profil komunitas + pemilik gerai | `#about` | `app/pages/index.vue` | `AboutDropdown` |
 | What You Learn With Us | `#program` | `app/pages/index.vue` | `ProgramSection` |
-| Testimoni (3 slide) | `#testimonial` | `app/pages/index.vue` | `TestimonialSection` |
-| Kartu mitra | `#about-detail` | `app/pages/index.vue` | `AboutUsDetailSection` |
+| Testimoni (3 slide) | `#testimoni` | `app/pages/index.vue` | `TestimonialSection` |
+| Kartu mitra | `#mitra` | `app/pages/index.vue` | `AboutUsDetailSection` |
 | Profil mitra | `/mitra/batik-shaho`, `/mitra/bulau-sayang` | route masing-masing | `MitraProfile` |
-| Jenis motif | `.../batik-shaho/motif`, `.../bulau-sayang-motif` | route masing-masing | `MitraMotifCatalog` |
-| Detail motif | `.../motif-detail/[jenis]`, `.../bulau-sayang-motif/[jenis]` | route masing-masing | `MitraMotifDetail` |
-| Maps | `.../batik-shaho/maps`, `.../bulau-sayang-maps` | route masing-masing | `MitraMaps` |
-| Reservasi | `.../batik-shaho/date`, `.../bulau-sayang-date` | route masing-masing | `MitraTerms`, `MitraPricelist`, `MitraReservation` |
-| Dokumentasi + QR | `.../batik-shaho/photo`, `.../bulau-sayang-photo` | route masing-masing | `MitraGallery` |
+| Jenis motif | `.../batik-shaho/motif`, `.../bulau-sayang/motif` | route masing-masing | `MitraMotifCatalog` |
+| Detail motif | `.../batik-shaho/motif-detail/[jenis]`, `.../bulau-sayang/motif-detail/[jenis]` | route masing-masing | `MitraMotifDetail` |
+| Maps | `.../batik-shaho/maps`, `.../bulau-sayang/maps` | route masing-masing | `MitraMaps` |
+| Reservasi | `.../batik-shaho/date`, `.../bulau-sayang/date` | route masing-masing | `MitraTerms`, `MitraPricelist`, `MitraReservation` |
+| Dokumentasi + QR | `.../batik-shaho/photo`, `.../bulau-sayang/photo` | route masing-masing | `MitraGallery` |
 
 Cara mengubah UI:
 
-- Teks, harga, link, dan data tiap mitra ada di file halamannya. Tampilan bersama ada di komponen `Mitra*`.
+- Kontak tiap mitra (nama, WhatsApp, Instagram, website, alamat, base route) ada di `app/utils/mitra.ts`.
+  Teks deskripsi, harga, dan motif ada di file halamannya. Tampilan bersama ada di komponen `Mitra*`.
+- Route Bulau Sayang memakai struktur yang sama dengan Batik Shaho (`/mitra/bulau-sayang/...`).
+  URL lama (`/mitra/bulau-sayang-maps`, dst.) di-redirect 301 lewat `routeRules` di `nuxt.config.ts`.
+- Slug motif yang tidak dikenal menghasilkan 404 (`findMotifOr404` di `app/utils/mitra.ts`).
+- Judul tab per halaman memakai `useSeoMeta({ title })`; template judul ada di `app/app.vue`.
 - Posisi memakai angka px dari Figma (lebar 1440): `:style="place(x, y, lebar, tinggi)"` dengan kelas `layer`,
   di dalam elemen berkelas `artboard`. Ukuran font: `calc(22 * var(--u))` = 22 px di Figma.
 - Gambar diputar/di-crop memakai `<ArtImage :box :size :transform :crop />`.
 - Mobile (maks. 700 px): `flow` ikut alur halaman, `decor` disembunyikan, sisanya di `<style scoped>`.
 - Aset ada di `public/design-baru/`, font Buenard dan Poppins di `public/fonts/`.
 - Screenshot peta harus **dipotong di file-nya**, bukan hanya lewat CSS, agar tab/bookmark browser tidak ikut tayang.
-- `AboutSection.vue`, `IntroSection.vue`, dan `DecorativeFlower.vue` tidak dipakai. Jangan hapus tanpa konfirmasi.
 - Bagian 5, 6.2-6.4, 7, 11, dan offset di bagian 10 masih mendokumentasikan desain lama.
   Jika berbeda, bagian 1 ini yang berlaku.
 
@@ -52,7 +56,7 @@ Cara mengubah UI:
 | UI | Vue 3 SFC (`<script setup lang="ts">`) |
 | Styling | Tailwind CSS 3.4 via `@nuxtjs/tailwindcss` |
 | Bahasa | TypeScript |
-| Font | Nunito (Google Fonts, diimpor dari `app/assets/css/main.css`) |
+| Font | Buenard, Poppins, Nunito (woff2 lokal di `public/fonts/`, `@font-face` di `app/assets/css/main.css`) |
 | Verifikasi visual | `agent-browser` (opsional, untuk agen) |
 
 Tidak ada state management, CMS, atau database. Data teks masih hard-coded di
@@ -133,51 +137,41 @@ Jangan mengarahkan Root Directory ke `webfinal`; folder itu sudah tidak ada.
 ```text
 .
 ├─ app/
-│  ├─ app.vue
-│  ├─ assets/css/main.css          # import Nunito + base style (overflow-x: clip)
+│  ├─ app.vue                      # titleTemplate global
+│  ├─ assets/css/main.css          # @font-face, artboard (.layer/.flow/.decor), .pill
 │  ├─ layouts/default.vue
+│  ├─ utils/
+│  │  ├─ artboard.ts               # place(x, y, w, h) + asset(path)
+│  │  └─ mitra.ts                  # data kontak mitra, mitraLinks(), findMotifOr404()
 │  ├─ pages/
-│  │  ├─ index.vue                 # urutan landing page 5 section
+│  │  ├─ index.vue                 # landing page (hero + 4 section)
 │  │  └─ mitra/
-│  │     ├─ bulau-sayang.vue        # profil utama mitra Batik Bulau Sayang
-│  │     ├─ bulau-sayang-maps.vue   # peta lokasi Bulau Sayang
-│  │     ├─ bulau-sayang-date.vue   # ketentuan & reservasi Bulau Sayang
-│  │     ├─ bulau-sayang-motif/
-│  │     │  ├─ index.vue            # katalog jenis motif Bulau Sayang
-│  │     │  └─ [jenis].vue          # detail motif Bulau Sayang
-│  │     └─ batik-shaho/
-│  │        ├─ index.vue           # profil utama mitra Batik Shaho
-│  │        ├─ motif.vue           # katalog jenis motif
-│  │        ├─ maps.vue            # peta lokasi
-│  │        ├─ date.vue            # ketentuan & reservasi
-│  │        └─ motif-detail/
-│  │           └─ [jenis].vue      # detail motif batik
+│  │     ├─ batik-shaho/
+│  │     │  ├─ index.vue           # profil
+│  │     │  ├─ motif.vue           # katalog jenis motif
+│  │     │  ├─ motif-detail/[jenis].vue
+│  │     │  ├─ maps.vue            # lokasi & kontak
+│  │     │  ├─ date.vue            # ketentuan, pricelist, reservasi
+│  │     │  └─ photo.vue           # dokumentasi + QR
+│  │     └─ bulau-sayang/          # struktur sama dengan batik-shaho
 │  └─ components/
 │     ├─ AppNavbar.vue             # navbar hero
-│     ├─ AboutDropdown.vue         # halaman 2
-│     ├─ AboutUsDetailSection.vue  # halaman 3 (card desain referensi)
-│     ├─ ProgramSection.vue        # halaman 4
-│     ├─ DecorativeFlower.vue      # bunga SVG/CSS (draft halaman 5)
-│     ├─ AboutSection.vue          # draft, belum dipakai
-│     ├─ IntroSection.vue          # draft, belum dipakai
-│     └─ TestimonialSection.vue    # halaman 5
+│     ├─ ArtImage.vue              # gambar di artboard (box/size/transform/crop)
+│     ├─ AboutDropdown.vue         # #about — profil komunitas + pemilik gerai
+│     ├─ ProgramSection.vue        # #program
+│     ├─ TestimonialSection.vue    # #testimoni (carousel 3 slide)
+│     ├─ AboutUsDetailSection.vue  # #mitra — kartu mitra
+│     ├─ GoldLeaves.vue            # deretan daun Program/Testimoni
+│     └─ Mitra*.vue                # komponen bersama halaman mitra
 ├─ public/
-│  ├─ halaman pertama/             # asset hero
-│  ├─ halaman kedua/               # asset halaman 2
-│  ├─ halaman ketiga/              # asset halaman 3
-│  ├─ halaman keempat/             # asset halaman 4
-│  ├─ halaman kelima/              # asset individual halaman 5
-│  └─ design/                      # asset mitra, motif, maps, date
-│     ├─ halaman_mitra_batik_shaho/1/   # profil Batik Shaho
-│     ├─ halaman_mitra_bulau_sayang/6/  # profil Bulau Sayang
-│     ├─ jenis_motif_batik/2/      # katalog motif Batik Shaho
-│     ├─ jenis_motif_batik_bs/     # katalog motif Bulau Sayang
-│     ├─ motif_batik/3/            # detail motif Batik Shaho
-│     ├─ motif_bs/                 # detail motif Bulau Sayang (Frame 42 & 44)
-│     ├─ maps/4/, maps_bs/         # maps Batik Shaho / Bulau Sayang
-│     └─ date/5/, date_bs/         # reservasi Batik Shaho / Bulau Sayang
+│  ├─ design-baru/                 # semua asset UI (ekspor Figma)
+│  │  ├─ beranda/  foto/  lokasi/  motif/  reservasi/  umum/
+│  ├─ fonts/                       # Buenard, Poppins, Nunito (woff2)
+│  ├─ favicon.ico                 # simbol logo komunitas (16/32/48 px)
+│  ├─ apple-touch-icon.png        # ikon 180 px untuk iPhone/iPad
+│  └─ robots.txt
 ├─ tailwind.config.ts              # token warna & font
-├─ nuxt.config.ts
+├─ nuxt.config.ts                  # head (lang, title, description), routeRules redirect
 └─ package.json
 ```
 
@@ -239,17 +233,40 @@ berbeda dan pernah menjadi sumber garis seam yang terlihat.
 
 ### 6.4 Navbar & anchor
 
-Navbar terpisah dari hero dan berada di dalam area hero setinggi `11.2%`.
+Label dan posisi navbar mengikuti Figma (Frame 122).
 
-| Link | Target | Keterangan |
+| Link | Target |
+| --- | --- |
+| Logo | `#home` |
+| About us | `#about` |
+| Program | `#program` |
+| Mitra Kami | `#mitra` |
+| Contact US | `#mitra` (belum ada section kontak) |
+
+Ikon cari di desain Figma sengaja tidak dipasang karena fitur pencarian tidak ada.
+
+Navbar `position: fixed` di luar artboard hero (container query hero mengurung
+elemen fixed), dengan artboard sendiri `1440 × 110` sehingga posisi px Figma tetap.
+Perilakunya diatur `useHideOnScroll()` (`app/composables/useHideOnScroll.ts`):
+
+- selalu tampil di 120 px teratas halaman;
+- hilang saat digulir ke bawah, muncul lagi setelah digulir ke atas ±8 px;
+- klik menu/logo memanggil `hold()` agar navbar tidak muncul menutupi section tujuan
+  sampai smooth scroll selesai (`scrollend`, maks. 3 detik);
+- tetap terlihat saat fokus keyboard (Tab) berada di dalamnya (`:has(:focus-visible)`).
+
+### 6.5 Animasi
+
+Figma tidak berisi data animasi, jadi animasi hanya mengantar elemen ke posisi
+akhir yang sudah sesuai desain. Semua memakai `opacity`/`transform` dan easing
+`var(--ease-out)`, serta mati otomatis saat `prefers-reduced-motion: reduce`.
+
+| Animasi | Lokasi | Catatan |
 | --- | --- | --- |
-| About us | `#about-detail` | halaman 3 |
-| Program | `#home` | masih placeholder |
-| Mitra Kami | `#home` | masih placeholder |
-| Home Page | `#home` | hero |
-
-Tombol "More Info" di hero menuju `#about` (halaman 2). Tombol search memakai
-asset `public/design/Vector(3).png`, tetapi fungsi pencarian belum dihubungkan.
+| Intro hero | `.reveal` di `main.css`, dipakai di `pages/index.vue` | Satu kali saat load. Urutan lewat `--delay`. Jangan dipakai di section lain. |
+| Slide testimoni | `<Transition>` di `TestimonialSection.vue` | Arah geser mengikuti tombol prev/next. |
+| Transisi halaman | `app.pageTransition` di `nuxt.config.ts`, `.page-*` di `main.css` | Fade 250 ms. Tiap halaman wajib satu root element. |
+| Hover | `a.pill` (`main.css`), `.card` (`MitraMotifCatalog.vue`), `.arrow` (`TestimonialSection.vue`) | Hanya di perangkat yang punya hover. |
 
 ---
 
@@ -257,26 +274,20 @@ asset `public/design/Vector(3).png`, tetapi fungsi pencarian belum dihubungkan.
 
 ### 7.1 Folder asset
 
-| Folder | Isi | Catatan |
-| --- | --- | --- |
-| `public/halaman pertama/` | `IMG_3486 1.png`, `logo.png`, `cewe.png`, `cowo.png` | `1.png` hanya referensi komposit |
-| `public/halaman kedua/` | `Rectangle 70.png`, `Rectangle 64.png`, `Vector(1).png` | `2.png` hanya referensi |
-| `public/halaman ketiga/` | peta, supergrafis, logo S/BS | `3.png` dan `image.png` hanya referensi |
-| `public/halaman keempat/` | wave, bunga, ellipse, ilustrasi | `4.png` hanya referensi |
-| `public/halaman kelima/` | foto, blob, bintang, garis | `5.png` hanya referensi komposit |
-| `public/design/` | referensi komposit + ikon search | `Vector(3).png` dipakai navbar |
-| `public/design/halaman_mitra_batik_shaho/1/` | aset profil Batik Shaho | dipakai `pages/mitra/batik-shaho/index.vue` |
-| `public/design/halaman_mitra_bulau_sayang/6/` | aset profil Bulau Sayang | dipakai `pages/mitra/bulau-sayang.vue` |
-| `public/design/jenis_motif_batik/2/` | katalog motif Batik Shaho | `Frame` hanya referensi |
-| `public/design/jenis_motif_batik_bs/` | katalog motif Bulau Sayang | `Frame 58.png` hanya referensi |
-| `public/design/motif_batik/3/` | detail motif Batik Shaho | dipakai `motif-detail/[jenis].vue` |
-| `public/design/motif_bs/` | detail motif Bulau Sayang | acuan `Frame 42.png` & `Frame 44.png` |
-| `public/design/maps/4/`, `public/design/maps_bs/` | maps Shaho / Bulau Sayang | aset individual |
-| `public/design/date/5/`, `public/design/date_bs/` | reservasi Shaho / Bulau Sayang | aset individual |
+Semua asset UI ada di `public/design-baru/` dan dipanggil lewat helper
+`asset('folder/file')`. Hampir semuanya hasil ekspor Figma (SVG/WebP).
 
-**Jangan memakai file komposit** (`1.png`, `2.png`, `3.png`, `4.png`,
-`image.png`, atau `public/halaman kelima/5.png`) sebagai UI. File itu
-hanya screenshot acuan. UI harus disusun dari asset individual.
+| Folder | Isi |
+| --- | --- |
+| `beranda/` | hero, pemilik gerai, program, testimoni |
+| `umum/` | logo, ornamen, ikon tombol mitra, daun emas, bintang |
+| `motif/` | katalog & detail motif |
+| `lokasi/` | peta, pin, ikon kontak |
+| `reservasi/` | ketentuan, pricelist, kalender |
+| `foto/` | dokumentasi kegiatan & QR |
+
+Folder lama (`public/halaman *`, `public/design/`) sudah dihapus karena tidak
+lagi dirujuk kode. Jika perlu, ambil dari riwayat git (sebelum 2026-11-23).
 
 ### 7.2 Responsive mobile
 
@@ -298,30 +309,11 @@ Nama file mengandung spasi. Di dalam `src` Vue, spasi di-encode:
 
 Jangan mengganti nama asset tanpa memperbarui semua referensi.
 
-### 7.4 Asset turunan penting
+### 7.4 Catatan asset lama
 
-| File | Asal | Kenapa ada |
-| --- | --- | --- |
-| `Rectangle 69 - sambungan.png` | `Rectangle 69.png` | Area transparan di atas lengkung wave memperlihatkan cream halaman 3. Versi ini mengisi kanopi atas dengan hijau `#1e3c2b` dan mempertahankan lengkung asli. |
-
-Gunakan `Rectangle 69 - sambungan.png` di `ProgramSection.vue`. Jangan kembali
-ke `Rectangle 69.png` kecuali seam sudah diuji ulang.
-
-### 7.5 Logo kartu halaman 3
-
-- Logo `S` (`IMG_4822 1.png`): memakai wrapper lingkaran hitam, `aspect-ratio: 1`.
-- Logo `BS` (`IMG_4819 3.png`): transparan, memakai rasio asli `239 / 292`,
-  **tanpa** wrapper lingkaran.
-
-### 7.6 Fade supergrafis
-
-Supergrafis kiri halaman 3 (`.community-supergraphic`) memakai mask:
-
-```css
-mask-image: linear-gradient(to bottom, #000 82%, transparent 99%);
-```
-
-Tujuannya agar ornamen memudar sebelum wave halaman 4, tidak terlihat terpotong.
+Aturan `Rectangle 69 - sambungan.png`, logo kartu `IMG_48xx`, dan
+`.community-supergraphic` berlaku untuk desain lama dan tidak relevan lagi
+setelah migrasi ke `design-baru/`.
 
 ---
 
@@ -465,9 +457,9 @@ Dengan keempat section pada rasio artboard:
 | --- | --- |
 | `#home` | `0` |
 | `#about` | `1024` |
-| `#about-detail` | `2048` |
+| `#mitra` | `2048` |
 | `#program` | `3072` |
-| `#testimonial` | `4096` |
+| `#testimoni` | `4096` |
 
 Offset bisa berubah jika ada section baru, margin, atau tinggi non-artboard.
 
@@ -521,7 +513,7 @@ Offset bisa berubah jika ada section baru, margin, atau tinggi non-artboard.
     tombol "More Info" Home (`bg-forest text-white shadow-lg hover:scale-[1.02]`).
     Tujuan tombol berjenjang:
     - halaman mitra (`/mitra/batik-shaho`, `/mitra/bulau-sayang`) →
-      `/#about-detail` (bagian About Us, tanpa scroll dari atas);
+      `/#mitra` (section kartu mitra);
     - subhalaman maps/motif/date → halaman mitra masing-masing (label
       `← Kembali`, bukan "Kembali ke Home");
     - detail motif → katalog jenis motif.
@@ -532,18 +524,18 @@ Offset bisa berubah jika ada section baru, margin, atau tinggi non-artboard.
 
 - [x] Implementasi halaman 5 Testimoni dari `public/design/5.png`.
       Asset individual sudah dipasang di `TestimonialSection.vue`.
-- [ ] Lengkapi anchor navbar: "Program" dan "Mitra Kami" masih `#home`.
-- [x] Pasang asset ikon search di navbar (`public/design/Vector(3).png`).
-      Fungsi pencarian belum dihubungkan.
-- [ ] Rapikan komponen draft yang tidak dipakai (`AboutSection.vue`,
-      `IntroSection.vue`) setelah konfirmasi.
+- [x] Anchor navbar terhubung ke section masing-masing.
+- [x] Ikon search dihapus dari navbar (fitur pencarian tidak ada).
+- [x] Hapus komponen draft (`AboutSection`, `IntroSection`, `DecorativeFlower`)
+      dan folder asset lama (2026-11-23).
 - [x] Uji mobile 390×844, 403×750, 473×750, tablet 768×1024,
       dan desktop 1440×1024.
 - [ ] Ubah tombol navigasi testimoni menjadi carousel aktif jika data testimoni kedua sudah tersedia.
-- [ ] Audit aksesibilitas: alt text ilustrasi dekoratif, kontras teks, focus ring.
+- [ ] Audit aksesibilitas lanjutan: kontras teks. (Focus ring `.pill`, reduced motion, carousel `role=region` sudah.)
 - [ ] Optimasi asset: beberapa PNG berukuran besar; pertimbangkan
       `NuxtImg`/kompresi tanpa mengubah tampilan.
-- [ ] Tambahkan metadata SEO (title, description, OG image).
+- [x] Metadata dasar: `lang="id"`, title per halaman, description.
+- [ ] OG image untuk pratinjau share.
 
 ---
 

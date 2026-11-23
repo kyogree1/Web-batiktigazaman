@@ -7,9 +7,9 @@ const props = defineProps<{
   driveUrl: string
 }>()
 
-const isShaho = props.variant === 'shaho'
+const isShaho = computed(() => props.variant === 'shaho')
 
-const photos = isShaho
+const photos = computed(() => isShaho.value
   ? [
       { file: 1, box: [365, 216, 332, 249] },
       { file: 2, box: [717, 216, 332, 249] },
@@ -22,7 +22,7 @@ const photos = isShaho
       { file: 3, box: [300, 442, 397, 223] },
       { file: 4, box: [716, 442, 397, 223] },
       { file: 1, box: [716, 702, 397, 223] },
-    ]
+    ])
 </script>
 
 <template>

@@ -12,16 +12,16 @@ export interface PriceCard {
 const props = defineProps<{ cards: PriceCard[] }>()
 
 // 3 kartu = desain Batik Shaho, 6 kartu = desain Bulau Sayang.
-const large = props.cards.length <= 3
-const height = large ? 1155 : 1643
+const large = computed(() => props.cards.length <= 3)
+const height = computed(() => (large.value ? 1155 : 1643))
 const tones = ['linear-gradient(#4f2107, #b54c10)', 'linear-gradient(#1e3c2b, #51a274)', 'linear-gradient(#887a49, #221f12)']
 
-const items = props.cards.map((card, index) => ({
+const items = computed(() => props.cards.map((card, index) => ({
   ...card,
   x: 90 + (index % 3) * 434,
-  y: large ? 378 : 372.2 + Math.floor(index / 3) * 542.64,
+  y: large.value ? 378 : 372.2 + Math.floor(index / 3) * 542.64,
   background: tones[index % 3],
-}))
+})))
 </script>
 
 <template>
